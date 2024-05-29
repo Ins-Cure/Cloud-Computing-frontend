@@ -1,23 +1,18 @@
 import React from "react";
 import Navbar from "@/components/Navbar";
 import { useRouter } from "next/router";
-import { getToken } from "@/utils/token";
+import { withAuth } from "@/utils/auth";
 
 const diseases = () => {
-  let token;
+  let token = withAuth();
   const router = useRouter();
 
-  if (getToken() == null) {
+  if (token == null) {
     router.push("/login");
-    console.log("login dulu");
-  } else {
-    token = getToken();
-    console.log(`Ini token mu : `, token);
   }
 
   // Check if the user is authenticated
   if (!token) {
-    // If not authenticated, redirect to the login page
     return null;
   }
 

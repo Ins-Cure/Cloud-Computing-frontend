@@ -1,10 +1,12 @@
 import React from "react";
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
+import { useRouter } from "next/router";
 
 const LoginUser = () => {
   const [tokenCek, setTokenCek] = useState(false);
   const [bearerToken, setBearerToken] = useState("");
+  const router = useRouter();
 
   function handlefetch(email: string, pass: string) {
     const data = {
@@ -62,6 +64,10 @@ const LoginUser = () => {
     event.currentTarget.reset();
   }
 
+  const goToPage = (path: string) => {
+    router.push(path);
+  };
+
   return (
     <>
       <Navbar />
@@ -88,6 +94,13 @@ const LoginUser = () => {
             className="p-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300"
           >
             Submit
+          </button>
+          <p className="self-center">Dont Have account ? Please Register</p>
+          <button
+            onClick={() => goToPage("/register")}
+            className="p-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300"
+          >
+            Register
           </button>
         </form>
 
