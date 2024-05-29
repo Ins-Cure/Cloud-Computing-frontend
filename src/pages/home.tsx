@@ -1,6 +1,7 @@
 import axios from "axios";
 import Link from "next/link";
 import { useState } from "react";
+import Navbar from "@/components/Navbar";
 
 export default function Home() {
   const [response, setResp] = useState(true);
@@ -21,11 +22,16 @@ export default function Home() {
   const random = Math.random();
   return (
     <>
-      <h1>Ini home.</h1>
-      <button onClick={postUser}>REGISTER</button>
+      <Navbar />
+      <div className="min-h-screen w-full flex justify-center items-center flex-col gap-10">
+        <h1 className="font-bold text-4xl">Hello Inscure User</h1>
+        <p>Please Login first</p>
+      </div>
+
+      {/* <button onClick={postUser}>REGISTER</button>
       <br />
       {response ? <p>belum regist</p> : <div>{responseData}</div>}
-      <Link href={`/homepage/${responseData}`}>GOTO</Link>
+      <Link href={`/homepage/${responseData}`}>GOTO</Link> */}
     </>
   );
 }
