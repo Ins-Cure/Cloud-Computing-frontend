@@ -2,6 +2,7 @@ import axios from "axios";
 import Link from "next/link";
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
+import { setToken, removeToken } from "@/utils/token";
 
 export default function Home() {
   const [response, setResp] = useState(true);
@@ -19,6 +20,13 @@ export default function Home() {
     console.log(data.data);
   }
 
+  function addToken() {
+    let add = setToken("token", "hello");
+  }
+
+  function rmToken() {
+    let add = removeToken();
+  }
   const random = Math.random();
   return (
     <>
@@ -26,6 +34,9 @@ export default function Home() {
       <div className="min-h-screen w-full flex justify-center items-center flex-col gap-10">
         <h1 className="font-bold text-4xl">Hello Inscure User</h1>
         <p>Please Login first</p>
+
+        <button onClick={addToken}>add</button>
+        <button onClick={rmToken}>remove</button>
       </div>
 
       {/* <button onClick={postUser}>REGISTER</button>

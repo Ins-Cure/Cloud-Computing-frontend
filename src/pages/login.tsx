@@ -1,9 +1,9 @@
 import React from "react";
 import { useState } from "react";
-import Navbar from "@/components/navbar";
+import Navbar from "@/components/Navbar";
 
 const LoginUser = () => {
-  const [token, setToken] = useState(false);
+  const [tokenCek, setTokenCek] = useState(false);
   const [bearerToken, setBearerToken] = useState("");
 
   function handlefetch(email: string, pass: string) {
@@ -34,10 +34,9 @@ const LoginUser = () => {
       .then(function (data) {
         // Handle data from response
         console.log(data); // Log or process the received data
-        setToken(!token);
+        setTokenCek(!tokenCek);
         console.log(data.data);
         setBearerToken(data.data);
-        // alert(`Success Login`); // Show success message
       })
       .catch(function (error) {
         // Handle errors
@@ -94,9 +93,9 @@ const LoginUser = () => {
 
         <div className="token-div bg-white p-8 rounded-lg shadow-lg w-full max-w-md text-center">
           <h2 className="text-xl font-semibold text-gray-800">
-            {token ? "You are logged in" : "Not logged in yet"}
+            {tokenCek ? "You are logged in" : "Not logged in yet"}
           </h2>
-          {token && (
+          {tokenCek && (
             <>
               <h3 className="text-lg text-gray-600">Here is your token:</h3>
               <p className="text-gray-700 break-all">{bearerToken}</p>
