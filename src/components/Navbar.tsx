@@ -1,7 +1,10 @@
 // components/Navbar.js
 import Link from "next/link";
+import { withAuth } from "@/utils/auth";
 
 const Navbar = () => {
+  let token = withAuth();
+
   return (
     <nav className="bg-gray-800 p-4">
       <div className="container mx-auto flex justify-between items-center">
@@ -16,12 +19,19 @@ const Navbar = () => {
           <Link href="/prediciton">
             <p className="text-white hover:text-gray-300">Predicton</p>
           </Link>
-          <Link href="/login">
-            <p className="text-white hover:text-gray-300">Login</p>
-          </Link>
-          <Link href="/register">
-            <p className="text-white hover:text-gray-300">Register</p>
-          </Link>
+          {token == null ? (
+            <>
+              <Link href="/login">
+                <p className="text-white hover:text-gray-300">Login</p>
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link href="/profile">
+                <p className="text-white hover:text-gray-300">Profile</p>
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </nav>
