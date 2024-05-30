@@ -3,7 +3,6 @@ import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import { useRouter } from "next/router";
 import { postLogin } from "@/fetch/postLogin";
-import { setToken } from "@/utils/token";
 
 const LoginUser = () => {
   const router = useRouter();
@@ -68,6 +67,7 @@ const LoginUser = () => {
           </button>
           <p className="self-center">Dont Have account ? Please Register</p>
           <button
+            type="button"
             onClick={() => goToPage("/register")}
             className="p-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300"
           >
