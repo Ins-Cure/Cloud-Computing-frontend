@@ -1,40 +1,10 @@
 import React from "react";
-import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import { useRouter } from "next/router";
-import { postLogin } from "@/fetch/postLogin";
-import { setToken } from "@/utils/token";
+import { handleSubmit } from "@/fetch/postLogin";
 
 const LoginUser = () => {
   const router = useRouter();
-
-  async function handlefetch(email: string, pass: string) {
-    console.log("handle fetch");
-    const data = {
-      email: email,
-      pass: pass,
-    };
-
-    postLogin(data);
-  }
-
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    console.log("handle submit");
-    event.preventDefault(); // Prevent default form submission behavior
-    const formData = new FormData(event.currentTarget); // Get form data
-
-    const email = formData.get("email"); // Get value of "email" input
-    const password = formData.get("password"); // Get value of "password" input
-
-    if (typeof email === "string" && typeof password === "string") {
-      handlefetch(email, password); // Call handleFetch with form input values
-    } else {
-      // Handle the case where email or password is null or not a string
-      console.error("Email or password is missing or not a string");
-    }
-
-    event.currentTarget.reset();
-  }
 
   const goToPage = (path: string) => {
     router.push(path);
