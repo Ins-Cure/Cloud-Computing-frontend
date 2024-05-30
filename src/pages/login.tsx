@@ -6,8 +6,6 @@ import { postLogin } from "@/fetch/postLogin";
 import { setToken } from "@/utils/token";
 
 const LoginUser = () => {
-  const [tokenCek, setTokenCek] = useState(false);
-  const [bearerToken, setbearerToken] = useState("");
   const router = useRouter();
 
   async function handlefetch(email: string, pass: string) {
@@ -17,12 +15,7 @@ const LoginUser = () => {
       pass: pass,
     };
 
-    const token = await postLogin(data);
-    setbearerToken(token);
-
-    if (typeof bearerToken === "string") {
-      setToken("token", bearerToken);
-    }
+    postLogin(data);
   }
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -81,18 +74,6 @@ const LoginUser = () => {
             Register
           </button>
         </form>
-
-        <div className="token-div bg-white p-8 rounded-lg shadow-lg w-full max-w-md text-center">
-          <h2 className="text-xl font-semibold text-gray-800">
-            {tokenCek ? "You are logged in" : "Not logged in yet"}
-          </h2>
-          {tokenCek && (
-            <>
-              <h3 className="text-lg text-gray-600">Here is your token:</h3>
-              <p className="text-gray-700 break-all">{bearerToken}</p>
-            </>
-          )}
-        </div>
       </div>
     </>
   );
