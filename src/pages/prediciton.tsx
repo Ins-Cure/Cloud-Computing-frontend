@@ -7,7 +7,7 @@ import { User } from "@/entity/user";
 import { handleSubmit } from "@/fetch/postPredict";
 import { Prediction } from "@/entity/prediction";
 
-const Diseases = () => {
+const Predictions = () => {
   let token = withAuth();
   const router = useRouter();
 
@@ -131,4 +131,4 @@ const Diseases = () => {
   );
 };
 
-export default Diseases;
+export default Predictions;
