@@ -1,9 +1,15 @@
 // components/Navbar.js
 import Link from "next/link";
 import { withAuth } from "@/utils/auth";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const Navbar = () => {
-  let token = withAuth();
+  // let token = withAuth();
+  const [token, setToken] = useState(withAuth());
+  useEffect(() => {
+    setToken(withAuth());
+  }, []);
 
   return (
     <nav className="bg-gray-800 p-4">

@@ -11,6 +11,7 @@ export function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
 
   if (typeof email === "string" && typeof password === "string") {
     handlefetch(email, password); // Call handleFetch with form input values
+    // console.log("email :", email);
   } else {
     // Handle the case where email or password is null or not a string
     console.error("Email or password is missing or not a string");

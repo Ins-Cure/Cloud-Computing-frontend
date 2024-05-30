@@ -23,11 +23,13 @@ const LoginUser = () => {
             type="text"
             name="email"
             placeholder="Email"
+            required
             className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
           />
           <input
             name="password"
             placeholder="Password"
+            required
             className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
           />
           <button
@@ -38,6 +40,7 @@ const LoginUser = () => {
           </button>
           <p className="self-center">Dont Have account ? Please Register</p>
           <button
+            type="button"
             onClick={() => goToPage("/register")}
             className="p-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300"
           >
