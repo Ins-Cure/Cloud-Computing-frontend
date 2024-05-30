@@ -23,7 +23,10 @@ const Navbar = () => {
             <p className="text-white hover:text-gray-300">Diseases</p>
           </Link>
           <Link href="/prediciton">
-            <p className="text-white hover:text-gray-300">Predicton</p>
+            <p className="text-white hover:text-gray-300">Predict</p>
+          </Link>
+          <Link href="/history">
+            <p className="text-white hover:text-gray-300">History</p>
           </Link>
           {token == null ? (
             <>
