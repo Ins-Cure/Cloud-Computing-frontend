@@ -8,7 +8,7 @@ export const withAuth = (): string | null => {
     return null;
   } else {
     token = getToken();
-    console.log(`Ini token mu : `, token);
+    // console.log(`Ini token mu : `, token);
     return token;
   }
 };

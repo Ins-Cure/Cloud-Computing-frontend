@@ -4,11 +4,12 @@ import { useState } from "react";
 
 export async function GetUser() {
   //   console.log(getToken());
-  const response = await baseApi.get(`/user/me`, {
-    headers: {
-      Authorization: `Bearer ${getToken()}`,
-    },
-  });
-  //   console.log(response.data);
-  return response.data;
+  try {
+    const response = await baseApi.get(`/user/me`, {
+      headers: {
+        Authorization: `Bearer ${getToken()}`,
+      },
+    });
+    return response.data;
+  } catch (error) {}
 }
