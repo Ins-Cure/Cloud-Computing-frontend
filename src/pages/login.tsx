@@ -2,52 +2,31 @@ import React from "react";
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import { useRouter } from "next/router";
+import { postLogin } from "@/fetch/postLogin";
+import { setToken } from "@/utils/token";
 
 const LoginUser = () => {
   const [tokenCek, setTokenCek] = useState(false);
-  const [bearerToken, setBearerToken] = useState("");
+  const [bearerToken, setbearerToken] = useState("");
   const router = useRouter();
 
-  function handlefetch(email: string, pass: string) {
+  async function handlefetch(email: string, pass: string) {
+    console.log("handle fetch");
     const data = {
       email: email,
       pass: pass,
     };
 
-    // Configure the fetch request with method, headers, and body
-    fetch("http://localhost:8080/inscure/login", {
-      method: "POST", // Use POST method to send data
-      headers: {
-        "Content-Type": "application/json", // Specify content type as JSON
-      },
-      body: JSON.stringify(data), // Convert data to JSON string
-    })
-      .then(function (response) {
-        if (!response.ok) {
-          // Check if the response status is not OK
-          return response.json().then((errorData) => {
-            throw new Error(
-              errorData.message || `HTTP error! status: ${response.status}`
-            );
-          });
-        }
-        return response.json(); // Parse response JSON
-      })
-      .then(function (data) {
-        // Handle data from response
-        console.log(data); // Log or process the received data
-        setTokenCek(!tokenCek);
-        console.log(data.data);
-        setBearerToken(data.data);
-      })
-      .catch(function (error) {
-        // Handle errors
-        console.error("Error:", error);
-        alert(`Error: ${error.message}`); // Show error message in a window
-      });
+    const token = await postLogin(data);
+    setbearerToken(token);
+
+    if (typeof bearerToken === "string") {
+      setToken("token", bearerToken);
+    }
   }
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    console.log("handle submit");
     event.preventDefault(); // Prevent default form submission behavior
     const formData = new FormData(event.currentTarget); // Get form data
 
@@ -74,7 +53,7 @@ const LoginUser = () => {
       <div className="min-h-screen w-full flex justify-center items-center flex-col gap-10 bg-gray-100 p-5">
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col gap-5 bg-white p-8 rounded-lg shadow-lg w-full max-w-md"
+          className="flex flex-col gap-5 bg-white p-8 rounded-lg shadow-lg w-full max-w-md text-black"
         >
           <h2 className="text-2xl font-bold text-gray-800">Login Page</h2>
           <input
@@ -84,7 +63,6 @@ const LoginUser = () => {
             className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
           />
           <input
-            type="password"
             name="password"
             placeholder="Password"
             className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
