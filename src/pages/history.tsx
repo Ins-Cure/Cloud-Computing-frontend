@@ -38,10 +38,10 @@ const History = () => {
       <Navbar />
       <div className="min-h-screen w-full flex flex-col justify-center items-center gap-10 bg-gray-100 py-10">
         {cekHistory ? (
-          history?.map((predict, index) => (
+          history?.map((predict) => (
             <div
               key={predict.id}
-              className="w-full max-w-lg bg-white shadow-md rounded-lg p-8 mb-4"
+              className="w-full max-w-lg bg-white shadow-md rounded-lg p-6 mb-4"
             >
               <p className="text-gray-700">
                 <span className="font-bold">Prediction:</span>{" "}
@@ -51,9 +51,16 @@ const History = () => {
                 <span className="font-bold">Date:</span>{" "}
                 {new Date(predict.tgl).toLocaleString()}
               </p>
-              <p className="text-gray-700">
-                <span className="font-bold">Image ID:</span> {predict.gambar}
-              </p>
+              <div className="text-gray-700 mb-4">
+                <span className="font-bold">Image:</span>
+                <div className="relative w-full h-64 mt-2">
+                  <img
+                    src={`https://storage.googleapis.com/example-bucket-test-cc-trw/${predict.gambar}`}
+                    alt="Prediction image"
+                    className="w-full h-full rounded-lg"
+                  />
+                </div>
+              </div>
             </div>
           ))
         ) : (
