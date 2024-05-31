@@ -4,17 +4,23 @@ import { useRouter } from "next/router";
 import { withAuth } from "@/utils/auth";
 
 const Diseases: React.FC = () => {
-  let token = withAuth();
+  const [token, setToken] = useState<string | null>(null);
   const router = useRouter();
 
-  if (token == null) {
-    router.push("/login");
-  }
+  useEffect(() => {
+    const authenticate = async () => {
+      const authToken = await withAuth();
+      if (!authToken) {
+        router.push("/login");
+      } else {
+        setToken(authToken);
+      }
+    };
+
+    authenticate();
+  }, []);
 
   // Check if the user is authenticated
-  if (!token) {
-    return null;
-  }
 
   return (
     <>

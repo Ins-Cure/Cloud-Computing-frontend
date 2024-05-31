@@ -8,7 +8,8 @@ import { handleSubmit } from "@/fetch/postPredict";
 import { Prediction } from "@/entity/prediction";
 
 const Predictions = () => {
-  let token = withAuth();
+  const [token, setToken] = useState<string | null>(null);
+
   const router = useRouter();
 
   const [cekUser, setcekUser] = useState(false);
@@ -17,19 +18,26 @@ const Predictions = () => {
   const [Predict, setPredict] = useState<Prediction | null>(null);
 
   useEffect(() => {
-    if (!token) {
-      router.push("/login");
-    } else {
-      GetUser()
-        .then((response) => {
-          setUser(response.data);
-          setcekUser(true);
-        })
-        .catch((error) => {
-          console.error("Failed to fetch user data:", error);
-          // Handle error case, possibly redirect to login
-        });
-    }
+    const authenticate = async () => {
+      const authToken = await withAuth();
+      if (!authToken) {
+        router.push("/login");
+      } else {
+        setToken(authToken);
+
+        GetUser()
+          .then((response) => {
+            setUser(response.data);
+            setcekUser(true);
+          })
+          .catch((error) => {
+            console.error("Failed to fetch user data:", error);
+            // Handle error case, possibly redirect to login
+          });
+      }
+    };
+
+    authenticate();
   }, []);
 
   // Check if the user is authenticated
