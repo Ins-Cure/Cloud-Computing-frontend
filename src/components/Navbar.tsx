@@ -5,10 +5,19 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 const Navbar = () => {
-  // let token = withAuth();
-  const [token, setToken] = useState(withAuth());
+  const [token, setToken] = useState<string | null>(null);
+
   useEffect(() => {
-    setToken(withAuth());
+    const authenticate = async () => {
+      const authToken = await withAuth();
+      if (!authToken) {
+        setToken(null);
+      } else {
+        setToken(authToken);
+      }
+    };
+
+    authenticate();
   }, []);
 
   return (
