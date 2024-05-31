@@ -12,14 +12,9 @@ interface User {
   role: string;
 }
 
-const diseases = () => {
+const Diseases = () => {
   let token = withAuth();
   const router = useRouter();
-
-  // Check if the user is authenticated
-  if (!token) {
-    return null;
-  }
 
   const [cekUser, setcekUser] = useState(false);
   const [user, setUser] = useState<User | null>(null);
@@ -38,7 +33,12 @@ const diseases = () => {
           // Handle error case, possibly redirect to login
         });
     }
-  }, []);
+  }, [token, router]);
+
+  // Check if the user is authenticated
+  if (!token) {
+    return null;
+  }
 
   return (
     <>
@@ -67,4 +67,5 @@ const diseases = () => {
     </>
   );
 };
-export default diseases;
+
+export default Diseases;
