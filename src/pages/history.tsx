@@ -27,7 +27,7 @@ const History = () => {
         })
         .catch((error) => {});
     }
-  }, []);
+  }, [router, token]);
 
   if (!token) {
     return null;
