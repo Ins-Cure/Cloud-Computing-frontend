@@ -1,14 +1,23 @@
 import { getToken } from "./token";
+import { GetUser } from "@/fetch/getUser";
+import { removeToken } from "./token";
 
-export const withAuth = (): string | null => {
-  let token;
+export const withAuth = async (): Promise<string | null> => {
+  let token = getToken();
 
-  if (getToken() == null) {
+  if (!token) {
     console.log("login dulu");
     return null;
   } else {
-    token = getToken();
-    // console.log(`Ini token mu : `, token);
-    return token;
+    try {
+      const response = await GetUser();
+      console.log("getUser : ", response);
+      return token;
+    } catch (error) {
+      console.error("Failed to get user:", error);
+      removeToken();
+      console.log("masuk remove");
+      return null;
+    }
   }
 };

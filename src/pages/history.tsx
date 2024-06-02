@@ -7,27 +7,33 @@ import { GetHistory } from "@/fetch/getHistory";
 import { Prediction } from "@/entity/prediction";
 
 const History = () => {
-  let token = withAuth();
+  const [token, setToken] = useState<string | null>(null);
   const router = useRouter();
 
   const [cekHistory, setcekHistory] = useState(false);
   const [history, setHistory] = useState<Prediction[] | null>(null);
 
   useEffect(() => {
-    if (!token) {
-      router.push("/login");
-    } else {
-      GetHistory()
-        .then((response) => {
-          setHistory(response.data);
-          console.log(response.data);
-          if (response.data && response.data.length > 0) {
-            setcekHistory(true);
-          }
-        })
-        .catch((error) => {});
-    }
-  }, [router, token]);
+    const authenticate = async () => {
+      const authToken = await withAuth();
+      if (!authToken) {
+        router.push("/login");
+      } else {
+        setToken(authToken);
+        GetHistory()
+          .then((response) => {
+            setHistory(response.data);
+            console.log(response.data);
+            if (response.data && response.data.length > 0) {
+              setcekHistory(true);
+            }
+          })
+          .catch((error) => {});
+      }
+    };
+
+    authenticate();
+  }, []);
 
   if (!token) {
     return null;
