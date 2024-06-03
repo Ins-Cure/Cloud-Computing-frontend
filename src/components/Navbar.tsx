@@ -1,6 +1,6 @@
 // components/Navbar.js
 import Link from "next/link";
-import { withAuth } from "@/utils/auth";
+import { getToken } from "@/utils/token";
 import { useState } from "react";
 import { useEffect } from "react";
 
@@ -8,16 +8,7 @@ const Navbar = () => {
   const [token, setToken] = useState<string | null>(null);
 
   useEffect(() => {
-    const authenticate = async () => {
-      const authToken = await withAuth();
-      if (!authToken) {
-        setToken(null);
-      } else {
-        setToken(authToken);
-      }
-    };
-
-    authenticate();
+    setToken(getToken());
   }, []);
 
   return (
