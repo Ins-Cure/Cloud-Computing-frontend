@@ -127,6 +127,14 @@ const Navbar = () => {
                 History
               </Link>
             </li>
+            <li>
+              <Link
+                href="/historychat"
+                className={`${ptSans.className} text-black`}
+              >
+                Chat
+              </Link>
+            </li>
             {!token ? (
               <li>
                 <Link
