@@ -59,6 +59,10 @@ const Predictions = () => {
       });
   };
 
+  const goToPage = (path: string) => {
+    router.push(path);
+  };
+
   return (
     <>
       <Navbar />
@@ -110,6 +114,14 @@ const Predictions = () => {
                 <h2 className="font-bold text-2xl text-gray-800 mb-4">
                   Prediction Result
                 </h2>
+
+                <button
+                  onClick={() => goToPage("/ChooseDoctor")}
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                >
+                  Consult
+                </button>
+
                 <p className="text-gray-700">
                   <span className="font-bold">Prediction:</span>{" "}
                   {Predict?.hasil_prediksi}
