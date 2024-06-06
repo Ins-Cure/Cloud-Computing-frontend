@@ -5,6 +5,7 @@ import { withAuth } from "@/utils/auth";
 
 import { GetAllDoctor } from "@/fetch/getAllDoctor";
 import { User } from "@/entity/user";
+import { HandleAddChat } from "@/fetch/postChatroom";
 
 const History = () => {
   const [token, setToken] = useState<string | null>(null);
@@ -34,7 +35,7 @@ const History = () => {
     };
 
     authenticate();
-  }, []);
+  }, [router]);
 
   if (!token) {
     return null;
@@ -65,7 +66,13 @@ const History = () => {
                 <span className="font-bold">NoTelp:</span> {doctor.notelp}
               </p>
               <button
-                onClick={() => goToPage(`/chat/${doctor.id}`)}
+                onClick={() => {
+                  if (typeof id === "string" && typeof name === "string") {
+                    HandleAddChat(id, name, doctor.id, doctor.name).then(() =>
+                      goToPage(`/chat/${doctor.id}`)
+                    );
+                  }
+                }}
                 className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
               >
                 Chat with this doctor
