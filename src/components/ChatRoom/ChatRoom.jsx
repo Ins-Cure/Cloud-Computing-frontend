@@ -3,7 +3,7 @@ import firebase from "firebase/compat/app";
 import ChatMessage from "@/components/ChatMessage/ChatMessage.jsx";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 
-import { auth, firestore } from "@/utils/firebase/firebase";
+import { firestore } from "@/utils/firebase/firebase";
 import { GetUser } from "@/fetch/getUser";
 
 function ChatRoom({ doctorID }) {

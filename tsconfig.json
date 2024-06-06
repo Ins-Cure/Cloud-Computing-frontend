@@ -21,7 +21,8 @@
     "**/*.ts",
     "**/*.tsx",
     "src/components/ChatRoom/ChatRoom.jsx",
-    "src/components/ChatMessage/ChatMessage.jsx"
+    "src/components/ChatMessage/ChatMessage.jsx",
+    "src/pages/historychat.jsx"
   ],
   "exclude": ["node_modules"]
 }
