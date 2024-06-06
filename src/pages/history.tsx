@@ -59,7 +59,7 @@ const History = () => {
               </p>
               <div className="text-gray-700 mb-4">
                 <span className="font-bold">Image:</span>
-                <div className="relative w-full h-64 mt-2">
+                <div className="w-full h-64 mt-2">
                   <img
                     src={`https://storage.googleapis.com/example-bucket-test-cc-trw/${predict.gambar}`}
                     alt="Prediction image"
