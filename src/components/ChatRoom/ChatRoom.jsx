@@ -71,7 +71,7 @@ function ChatRoom({ doctorID }) {
             value={formValue}
             onChange={(e) => setFormValue(e.target.value)}
             placeholder="Say something nice"
-            className="flex-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="flex-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-black"
           />
           <button
             type="submit"
