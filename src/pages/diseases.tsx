@@ -26,9 +26,9 @@ const Diseases: React.FC = () => {
           disease?.map((d) => (
             <div
               key={d.id}
-              className="relative flex align-middle  bg-clip-border rounded-xl bg-white text-gray-700 shadow-md w-full max-w-[25git adrem] max-h-[20rem] flex-row"
+              className="flex align-middle  bg-clip-border rounded-xl bg-white text-gray-700 shadow-md w-full max-w-[25git adrem] max-h-[20rem] flex-row"
             >
-              <div className="relative w-2/5 m-0 overflow-hidden text-gray-700 bg-white rounded-r-none bg-clip-border rounded-xl shrink-0">
+              <div className="w-2/5 m-0 overflow-hidden text-gray-700 bg-white rounded-r-none bg-clip-border rounded-xl shrink-0">
                 <img
                   src="https://img.freepik.com/premium-vector/acne-skin-problems-concept-man-with-magnifying-glass-is-looking-acne-his-facial-falt-vector-cartoon-illustration_77116-1182.jpg?w=900"
                   alt="disease-img"
