@@ -116,7 +116,12 @@ const Predictions = () => {
                 </h2>
 
                 <button
-                  onClick={() => goToPage("/ChooseDoctor")}
+                  onClick={() =>
+                    router.push({
+                      pathname: "/choosedoctor/[id]",
+                      query: { id: user?.id, name: user?.name },
+                    })
+                  }
                   className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                 >
                   Consult

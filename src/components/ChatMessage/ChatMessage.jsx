@@ -14,12 +14,21 @@ function ChatMessage(props) {
 
   const { text, uid } = props.message;
 
-  const messageClass = uid === currID ? "sent" : "received";
+  const messageClass =
+    uid === currID
+      ? "bg-blue-500 text-white self-end"
+      : "bg-gray-300 text-black self-start";
 
   return (
     <>
-      <div className={`message ${messageClass}`}>
-        <p>{text}</p>
+      <div
+        className={`flex ${uid === currID ? "justify-end" : "justify-start"}`}
+      >
+        <div
+          className={`p-2 rounded-lg mb-2 max-w-xs break-words ${messageClass}`}
+        >
+          <p>{text}</p>
+        </div>
       </div>
     </>
   );

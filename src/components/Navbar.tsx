@@ -27,7 +27,7 @@ const Navbar = () => {
     { label: "HOME", href: "/" },
     { label: "DISEASES", href: "/diseases" },
     { label: "PREDICTION", href: "/prediciton" },
-    { label: "CONSULTATION", href: "/historychat" },
+    { label: "CONSULTATION", href: "/historychat.jsx" },
   ];
 
   const navLinksDoctor = [

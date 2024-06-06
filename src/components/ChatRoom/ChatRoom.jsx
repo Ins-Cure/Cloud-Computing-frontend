@@ -3,11 +3,8 @@ import firebase from "firebase/compat/app";
 import ChatMessage from "@/components/ChatMessage/ChatMessage.jsx";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 
-import { auth, firestore } from "@/utils/firebase/firebase";
+import { firestore } from "@/utils/firebase/firebase";
 import { GetUser } from "@/fetch/getUser";
-import { User } from "@/entity/user";
-import { setUserId } from "firebase/analytics";
-import { DocumentData } from "firebase/firestore";
 
 function ChatRoom({ doctorID }) {
   console.log("ini doctor id", doctorID);
@@ -58,26 +55,33 @@ function ChatRoom({ doctorID }) {
 
   return (
     <>
-      <main>
-        {messages &&
-          messages.map((msg) => (
-            <ChatMessage key={msg.id} message={msg} uid={uid} />
-          ))}
-
-        <span ref={dummy}></span>
-      </main>
-
-      <form onSubmit={sendMessage}>
-        <input
-          value={formValue}
-          onChange={(e) => setFormValue(e.target.value)}
-          placeholder="say something nice"
-        />
-
-        <button type="submit" disabled={!formValue}>
-          🕊️
-        </button>
-      </form>
+      <div className="flex flex-col h-[75vh] w-full max-w-3xl mx-auto bg-slate-500 shadow-lg rounded-lg">
+        <main className="flex-1 overflow-y-auto p-4 space-y-4">
+          {messages &&
+            messages.map((msg) => (
+              <ChatMessage key={msg.id} message={msg} uid={uid} />
+            ))}
+          <span ref={dummy}></span>
+        </main>
+        <form
+          onSubmit={sendMessage}
+          className="flex items-center p-4 border-t bg-slate-600"
+        >
+          <input
+            value={formValue}
+            onChange={(e) => setFormValue(e.target.value)}
+            placeholder="Say something nice"
+            className="flex-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <button
+            type="submit"
+            disabled={!formValue}
+            className="ml-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:opacity-50"
+          >
+            🕊️
+          </button>
+        </form>
+      </div>
     </>
   );
 }
