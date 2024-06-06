@@ -1,7 +1,7 @@
 import { baseApi } from "@/utils/baseApi";
 import { setToken } from "@/utils/token";
 
-export function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+export async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
   console.log("handle submit");
   event.preventDefault(); // Prevent default form submission behavior
   const formData = new FormData(event.currentTarget); // Get form data

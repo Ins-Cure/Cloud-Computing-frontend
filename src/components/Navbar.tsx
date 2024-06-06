@@ -1,6 +1,6 @@
 // components/Navbar.js
 import Link from "next/link";
-import { getToken } from "@/utils/token";
+import { getToken, removeToken } from "@/utils/token";
 import { useState } from "react";
 import { useEffect } from "react";
 import { PT_Sans } from "next/font/google";
@@ -9,6 +9,9 @@ import { FiMenu } from "react-icons/fi";
 import { FaHistory } from "react-icons/fa";
 import { RxAvatar } from "react-icons/rx";
 import { RiMenuUnfold4Fill } from "react-icons/ri";
+import { GetUser } from "@/fetch/getUser";
+import { User } from "@/entity/user";
+import { useRouter } from "next/router";
 
 const ptSans = PT_Sans({ weight: "400", subsets: ["latin"] });
 const ptSansBold = PT_Sans({ weight: "700", subsets: ["latin"] });
@@ -17,6 +20,8 @@ const Navbar = () => {
   // let token = withAuth();
   const [token, setToken] = useState<string | null>(null);
   const [isSideMenuOpen, setisSideMenuOpen] = useState(false);
+  const [role, setRole] = useState("");
+  const router = useRouter();
 
   const navLinks = [
     { label: "HOME", href: "/" },
@@ -25,9 +30,21 @@ const Navbar = () => {
     { label: "CONSULTATION", href: "/historychat" },
   ];
 
+  const navLinksDoctor = [
+    { label: "HOME", href: "/" },
+    { label: "DISEASES", href: "/diseases" },
+    { label: "CONSULTATION", href: "/historychat" },
+  ];
+
+  function handleLogout() {
+    removeToken();
+    router.push("/");
+    // router.reload();
+  }
+
   useEffect(() => {
     setToken(getToken());
-  }, []);
+  }, [token]);
 
   return (
     <main>
@@ -93,7 +110,7 @@ const Navbar = () => {
           {/* history icon */}
           <Link href="/history" passHref>
             <div className="flex items-center gap-4 group">
-              <div className="font-bold tracking-widesttransform -translate-x-4 opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100 group-hover:translate-x-0 bg-[#E1F7F5] rounded-full px-4 py-1">
+              <div className="font-bold tracking-widesttransform -translate-x-4 opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100 group-hover:translate-x-0 bg-gray-100 rounded-full px-4 py-1">
                 HISTORY
               </div>
               <FaHistory size={20} />
@@ -104,15 +121,25 @@ const Navbar = () => {
               <RxAvatar size={25} />
             </Link>
           ) : (
-            <Link href="/profile">
-              <Image
-                className="rounded-full"
-                width={35}
-                height={25}
-                src="https://i.pravatar.cc/300"
-                alt="avatar-logged-in"
-              />
-            </Link>
+            <div className="group">
+              <Link href="/profile">
+                <Image
+                  className="rounded-full"
+                  width={35}
+                  height={25}
+                  src="https://i.pravatar.cc/300"
+                  alt="avatar-logged-in"
+                />
+              </Link>
+              <div className="flex flex-col gap-2 right-5 lg:right-20 absolute mt-2 w-max rounded-lg bg-gray-100 px-5 py-1 transition-all duration-300 ease-in-out opacity-0 transform translate-y-2 z-10 group-hover:flex-col group-hover:opacity-100 group-hover:translate-y-0">
+                <Link href="/profile" className=" hover:text-[#9AC8CD]">
+                  Profile
+                </Link>
+                <button onClick={handleLogout} className="hover:text-[#9AC8CD]">
+                  Logout
+                </button>
+              </div>
+            </div>
           )}
           {/* // <Link href="/profile">
           //   <RxAvatar size={25} />

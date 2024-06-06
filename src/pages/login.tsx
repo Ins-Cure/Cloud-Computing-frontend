@@ -8,6 +8,7 @@ const LoginUser = () => {
 
   const goToPage = (path: string) => {
     router.push(path);
+    // router.reload();
   };
 
   return (
@@ -15,7 +16,9 @@ const LoginUser = () => {
       <Navbar />
       <div className="min-h-screen w-full flex justify-center items-center flex-col gap-10 bg-gray-100 p-5">
         <form
-          onSubmit={handleSubmit}
+          onSubmit={(e) => {
+            handleSubmit(e).then(() => router.push("/"));
+          }}
           className="flex flex-col gap-5 bg-white p-8 rounded-lg shadow-lg w-full max-w-md text-black"
         >
           <h2 className="text-2xl font-bold text-gray-800">Login Page</h2>
