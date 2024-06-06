@@ -8,7 +8,7 @@ import ChatRoom from "@/components/ChatRoom/ChatRoom.jsx";
 const History = () => {
   const [token, setToken] = useState<string | null>(null);
   const router = useRouter();
-  const { id } = router.query;
+  const { id, name, d_id } = router.query;
 
   useEffect(() => {
     const authenticate = async () => {
@@ -32,7 +32,7 @@ const History = () => {
       <Navbar />
       <div className="min-h-screen w-full flex flex-col justify-center items-center gap-10 bg-gray-100 py-10">
         <h1>This is chat Page</h1>
-        <ChatRoom doctorID={id} />
+        <ChatRoom userID={id} doctorID={d_id} />
       </div>
     </>
   );

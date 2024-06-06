@@ -69,7 +69,10 @@ const History = () => {
                 onClick={() => {
                   if (typeof id === "string" && typeof name === "string") {
                     HandleAddChat(id, name, doctor.id, doctor.name).then(() =>
-                      goToPage(`/chat/${doctor.id}`)
+                      router.push({
+                        pathname: "/chat/[id]",
+                        query: { id: id, name: name, d_id: doctor.id },
+                      })
                     );
                   }
                 }}
