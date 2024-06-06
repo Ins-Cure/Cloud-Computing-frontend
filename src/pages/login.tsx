@@ -17,7 +17,7 @@ const LoginUser = () => {
       <div className="min-h-screen w-full flex justify-center items-center flex-col gap-10 bg-gray-100 p-5">
         <form
           onSubmit={(e) => {
-            handleSubmit(e).then(() => router.push("/"));
+            handleSubmit(e, router);
           }}
           className="flex flex-col gap-5 bg-white p-8 rounded-lg shadow-lg w-full max-w-md text-black"
         >

@@ -1,7 +1,11 @@
 import { baseApi } from "@/utils/baseApi";
 import { setToken } from "@/utils/token";
+import { NextRouter } from "next/router";
 
-export async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+export async function handleSubmit(
+  event: React.FormEvent<HTMLFormElement>,
+  router: NextRouter
+) {
   console.log("handle submit");
   event.preventDefault(); // Prevent default form submission behavior
   const formData = new FormData(event.currentTarget); // Get form data
@@ -10,7 +14,7 @@ export async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
   const password = formData.get("password"); // Get value of "password" input
 
   if (typeof email === "string" && typeof password === "string") {
-    handleFetch(email, password); // Call handleFetch with form input values
+    handleFetch(email, password, router); // Call handleFetch with form input values
   } else {
     // Handle the case where email or password is null or not a string
     console.error("Email or password is missing or not a string");
@@ -19,14 +23,14 @@ export async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
   event.currentTarget.reset();
 }
 
-async function handleFetch(email: string, pass: string) {
+async function handleFetch(email: string, pass: string, router: NextRouter) {
   console.log("handle fetch");
   const data = {
     email: email,
     pass: pass,
   };
 
-  await postLogin(data);
+  await postLogin(data).then(() => router.push("/"));
 }
 
 async function postLogin(data: { email: string; pass: string }) {

@@ -38,7 +38,8 @@ const Navbar = () => {
 
   function handleLogout() {
     removeToken();
-    router.push("/");
+    if (router.pathname === "/") router.reload();
+    else router.push("/");
     // router.reload();
   }
 
