@@ -4,29 +4,18 @@ import ChatMessage from "@/components/ChatMessage/ChatMessage.jsx";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 
 import { firestore } from "@/utils/firebase/firebase";
-import { GetUser } from "@/fetch/getUser";
 
-function ChatRoom({ doctorID }) {
+function ChatRoom({ userID, doctorID }) {
   console.log("ini doctor id", doctorID);
   const dummy = useRef();
   const messagesRef = firestore.collection("messages");
-
-  const [uid, setuid] = useState("");
-
-  useEffect(() => {
-    GetUser()
-      .then((response) => {
-        setuid(response.data.id);
-      })
-      .catch((error) => {});
-  });
 
   //   const { uid, photoURL } = auth.currentUser;
 
   const q = messagesRef
     .orderBy("createdAt")
-    .where("uid", "in", [doctorID, uid])
-    .where("uid_2", "in", [doctorID, uid]);
+    .where("uid", "in", [doctorID, userID])
+    .where("uid_2", "in", [doctorID, userID]);
 
   const [messages, loading, error] = useCollectionData(q, {
     idField: "id",
@@ -45,7 +34,7 @@ function ChatRoom({ doctorID }) {
     await messagesRef.add({
       text: formValue,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      uid: uid,
+      uid: userID,
       uid_2: doctorID,
     });
 
@@ -59,7 +48,7 @@ function ChatRoom({ doctorID }) {
         <main className="flex-1 overflow-y-auto p-4 space-y-4">
           {messages &&
             messages.map((msg) => (
-              <ChatMessage key={msg.id} message={msg} uid={uid} />
+              <ChatMessage key={msg.id} message={msg} uid={userID} />
             ))}
           <span ref={dummy}></span>
         </main>
