@@ -6,6 +6,8 @@ import { GetUser } from "@/fetch/getUser";
 import { User } from "@/entity/user";
 import { handleSubmit } from "@/fetch/postPredict";
 import { Prediction } from "@/entity/prediction";
+import { GetDiseasebyId } from "@/fetch/getDiseasebyID";
+import { Disease } from "@/entity/disease";
 
 const Predictions = () => {
   const [token, setToken] = useState<string | null>(null);
@@ -16,6 +18,8 @@ const Predictions = () => {
   const [user, setUser] = useState<User | null>(null);
   const [cekPredict, setcekPredict] = useState(false);
   const [Predict, setPredict] = useState<Prediction | null>(null);
+
+  const [disease, setDisease] = useState<Disease | null>(null);
 
   useEffect(() => {
     const authenticate = async () => {
@@ -52,6 +56,12 @@ const Predictions = () => {
       .then((response) => {
         setPredict(response);
         setcekPredict(true);
+        return response;
+      })
+      .then((response) => {
+        GetDiseasebyId(+response.hasil_prediksi).then((response) => {
+          setDisease(response);
+        });
       })
       .catch((error) => {
         console.error("Failed to fetch user data:", error);
@@ -132,8 +142,11 @@ const Predictions = () => {
                 </button>
 
                 <p className="text-gray-700">
-                  <span className="font-bold">Prediction:</span>{" "}
-                  {Predict?.hasil_prediksi}
+                  <span className="font-bold">Prediction:</span> {disease?.name}
+                </p>
+                <p className="text-gray-700">
+                  <span className="font-bold">Penjelasan:</span>{" "}
+                  {disease?.headline}
                 </p>
                 <p className="text-gray-700">
                   <span className="font-bold">Date:</span> {Predict?.tgl}
