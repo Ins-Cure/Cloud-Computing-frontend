@@ -30,8 +30,7 @@ const History = () => {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen w-full flex flex-col justify-center items-center gap-10 bg-gray-100 py-10">
-        <h1>This is chat Page</h1>
+      <div className="min-h-screen w-full flex flex-col justify-center items-center gap-10 bg-gray-100">
         <ChatRoom userID={id} doctorID={d_id} role={role} />
       </div>
     </>

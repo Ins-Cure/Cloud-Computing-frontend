@@ -8,6 +8,7 @@ import { handleSubmit } from "@/fetch/postPredict";
 import { Prediction } from "@/entity/prediction";
 import { GetDiseasebyId } from "@/fetch/getDiseasebyID";
 import { Disease } from "@/entity/disease";
+import Loading from "@/components/Loading/loading";
 
 const Predictions = () => {
   const [token, setToken] = useState<string | null>(null);
@@ -18,6 +19,7 @@ const Predictions = () => {
   const [user, setUser] = useState<User | null>(null);
   const [cekPredict, setcekPredict] = useState(false);
   const [Predict, setPredict] = useState<Prediction | null>(null);
+  const [isLoading, setLoading] = useState(false);
 
   const [disease, setDisease] = useState<Disease | null>(null);
 
@@ -51,11 +53,12 @@ const Predictions = () => {
 
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setLoading(true);
+    setcekPredict(true);
 
     handleSubmit(event)
       .then((response) => {
         setPredict(response);
-        setcekPredict(true);
         return response;
       })
       .then((response) => {
@@ -70,7 +73,8 @@ const Predictions = () => {
       .catch((error) => {
         console.error("Failed to fetch user data:", error);
         // Handle error case, possibly redirect to login
-      });
+      })
+      .finally(() => setLoading(false));
   };
 
   const goToPage = (path: string) => {
@@ -122,8 +126,11 @@ const Predictions = () => {
         )}
 
         {cekPredict ? (
-          Predict ? (
+          isLoading ? (
+            <Loading />
+          ) : Predict ? (
             <>
+              {" "}
               <div className="mt-8 w-full max-w-lg bg-white shadow-md rounded-lg p-8 dark:bg-gray-800">
                 <h2 className="font-bold text-2xl text-gray-800 dark:text-gray-200 mb-4">
                   Prediction Result
@@ -163,14 +170,16 @@ const Predictions = () => {
             </>
           )
         ) : (
-          <div className="mt-8 w-full max-w-lg bg-white shadow-md rounded-lg p-8">
-            <h2 className="font-bold text-2xl text-gray-800 mb-4">
-              No Prediction Made Yet
-            </h2>
-            <p className="text-gray-700">
-              Please make a prediction using the form above.
-            </p>
-          </div>
+          <>
+            <div className="mt-8 w-full max-w-lg bg-white shadow-md rounded-lg p-8">
+              <h2 className="font-bold text-2xl text-gray-800 mb-4">
+                No Prediction Made Yet
+              </h2>
+              <p className="text-gray-700">
+                Please make a prediction using the form above.
+              </p>
+            </div>
+          </>
         )}
       </div>
     </>
