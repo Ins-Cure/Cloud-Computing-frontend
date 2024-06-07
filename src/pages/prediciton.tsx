@@ -119,7 +119,11 @@ const Predictions = () => {
                   onClick={() =>
                     router.push({
                       pathname: "/choosedoctor/[id]",
-                      query: { id: user?.id, name: user?.name },
+                      query: {
+                        id: user?.id,
+                        name: user?.name,
+                        role: user?.role,
+                      },
                     })
                   }
                   className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"

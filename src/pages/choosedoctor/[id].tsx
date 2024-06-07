@@ -13,7 +13,7 @@ const History = () => {
 
   const [cekDoctor, setcekDoctor] = useState(false);
   const [doctor, setDoctor] = useState<User[] | null>(null);
-  const { id, name } = router.query;
+  const { id, name, role } = router.query;
 
   useEffect(() => {
     const authenticate = async () => {
@@ -71,7 +71,12 @@ const History = () => {
                     HandleAddChat(id, name, doctor.id, doctor.name).then(() =>
                       router.push({
                         pathname: "/chat/[id]",
-                        query: { id: id, name: name, d_id: doctor.id },
+                        query: {
+                          id: id,
+                          name: name,
+                          d_id: doctor.id,
+                          role: role,
+                        },
                       })
                     );
                   }
