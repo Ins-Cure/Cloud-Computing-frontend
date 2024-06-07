@@ -59,9 +59,13 @@ const Predictions = () => {
         return response;
       })
       .then((response) => {
-        GetDiseasebyId(+response.hasil_prediksi).then((response) => {
-          setDisease(response);
-        });
+        console.log("calling getdisease by id");
+        return GetDiseasebyId(+response.hasil_prediksi);
+      })
+      .then((diseaseResponse) => {
+        console.log("calling setDisease");
+        setDisease(diseaseResponse.data);
+        console.log("response get :", diseaseResponse);
       })
       .catch((error) => {
         console.error("Failed to fetch user data:", error);
