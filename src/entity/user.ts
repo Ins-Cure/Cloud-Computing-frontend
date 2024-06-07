@@ -4,6 +4,7 @@ export type User = {
   email: string;
   notelp: string;
   pass: string;
+  role: string;
   Prediciton: ListPrediction[];
 };
 

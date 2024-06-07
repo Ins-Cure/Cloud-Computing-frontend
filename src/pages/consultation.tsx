@@ -12,6 +12,7 @@ const History = () => {
 
   const [cekHistoryChat, setcekHistoryChat] = useState(false);
   const [historyChat, setHistoryChat] = useState<Chatroom[] | null>(null);
+  const [Role, setRole] = useState("");
 
   useEffect(() => {
     const authenticate = async () => {
@@ -25,6 +26,7 @@ const History = () => {
             setHistoryChat(response.data);
             if (response.data && response.data.length > 0) {
               setcekHistoryChat(true);
+              setRole(response.role);
             }
           })
           .catch((error) => {});
@@ -61,6 +63,7 @@ const History = () => {
                       id: chat.uid,
                       name: chat.u_name,
                       d_id: chat.uid_doctor,
+                      role: Role,
                     },
                   })
                 }

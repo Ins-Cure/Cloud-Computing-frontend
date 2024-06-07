@@ -5,7 +5,8 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 
 import { firestore } from "@/utils/firebase/firebase";
 
-function ChatRoom({ userID, doctorID }) {
+function ChatRoom({ userID, doctorID, role }) {
+  const [currRole, SetCurrRole] = useState("");
   console.log("ini doctor id", doctorID);
   const dummy = useRef();
   const messagesRef = firestore.collection("messages");
@@ -28,14 +29,17 @@ function ChatRoom({ userID, doctorID }) {
     return <div>Error loading message</div>;
   }
 
+  const uid = role === "User" ? userID : doctorID;
+  const uid_2 = role === "User" ? doctorID : userID;
+
   const sendMessage = async (e) => {
     e.preventDefault();
 
     await messagesRef.add({
       text: formValue,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      uid: userID,
-      uid_2: doctorID,
+      uid: uid,
+      uid_2: uid_2,
     });
 
     setFormValue("");
