@@ -120,8 +120,8 @@ const Predictions = () => {
         {cekPredict ? (
           Predict ? (
             <>
-              <div className="mt-8 w-full max-w-lg bg-white shadow-md rounded-lg p-8">
-                <h2 className="font-bold text-2xl text-gray-800 mb-4">
+              <div className="mt-8 w-full max-w-lg bg-white shadow-md rounded-lg p-8 dark:bg-gray-800">
+                <h2 className="font-bold text-2xl text-gray-800 dark:text-gray-200 mb-4">
                   Prediction Result
                 </h2>
 
@@ -136,19 +136,19 @@ const Predictions = () => {
                       },
                     })
                   }
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                  className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4 transition-colors duration-300 ease-in-out"
                 >
                   Consult
                 </button>
 
-                <p className="text-gray-700">
+                <p className="text-gray-700 dark:text-gray-300 mb-2">
                   <span className="font-bold">Prediction:</span> {disease?.name}
                 </p>
-                <p className="text-gray-700">
+                <p className="text-gray-700 dark:text-gray-300 mb-2">
                   <span className="font-bold">Penjelasan:</span>{" "}
                   {disease?.headline}
                 </p>
-                <p className="text-gray-700">
+                <p className="text-gray-700 dark:text-gray-300 mb-2">
                   <span className="font-bold">Date:</span> {Predict?.tgl}
                 </p>
               </div>
