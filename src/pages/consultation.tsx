@@ -52,7 +52,7 @@ const History = () => {
               className="w-full max-w-lg bg-white shadow-lg rounded-lg p-6 mb-4 dark:bg-gray-800"
             >
               <p className="text-gray-700 dark:text-gray-300 font-semibold mb-2">
-                {chat.u_doctor}
+                {Role === "User" ? chat.u_doctor : chat.u_name}
               </p>
               <button
                 className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
