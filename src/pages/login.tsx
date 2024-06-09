@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Navbar from "@/components/Navbar";
 import { useRouter } from "next/router";
 import { handleSubmit } from "@/fetch/postLogin";
+import toast, { Toaster } from "react-hot-toast";
 
 const LoginUser = () => {
   const router = useRouter();
+  const { query, pathname, replace } = router;
+  const toastShownRef = useRef(false);
+
+  useEffect(() => {
+    if (query.logout == "success" && !toastShownRef.current) {
+      toast.success("Logout successful");
+      toastShownRef.current = true;
+      replace(pathname, undefined, { shallow: true });
+    }
+  }, [query.logout, pathname, replace]);
 
   const goToPage = (path: string) => {
     router.push(path);
@@ -14,6 +25,7 @@ const LoginUser = () => {
   return (
     <>
       <Navbar />
+      <Toaster position="top-right" reverseOrder={false} />
       <div className="min-h-screen w-full flex justify-center items-center flex-col gap-10 bg-gray-100 p-5">
         <form
           onSubmit={(e) => {
