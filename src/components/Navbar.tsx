@@ -12,6 +12,7 @@ import { RiMenuUnfold4Fill } from "react-icons/ri";
 import { GetUser } from "@/fetch/getUser";
 import { User } from "@/entity/user";
 import { useRouter } from "next/router";
+import toast from "react-hot-toast";
 
 const ptSans = PT_Sans({ weight: "400", subsets: ["latin"] });
 const ptSansBold = PT_Sans({ weight: "700", subsets: ["latin"] });
@@ -38,8 +39,10 @@ const Navbar = () => {
 
   function handleLogout() {
     removeToken();
-    if (router.pathname === "/") router.reload();
-    else router.push("/");
+    router.push({
+      pathname: "/login",
+      query: { logout: "success" },
+    });
     // router.reload();
   }
 
@@ -48,8 +51,8 @@ const Navbar = () => {
   }, [token]);
 
   return (
-    <main>
-      <nav className="flex justify-between px-8 items-center py-9 bg-white text-black w-auto lg:px-24">
+    <>
+      <nav className="h-1/5 flex justify-between px-8 items-center py-9 bg-white text-black w-auto lg:px-24">
         <div className="flex items-center gap-8 text-black">
           <section className="flex items-center gap-4">
             {/* menu */}
@@ -148,7 +151,7 @@ const Navbar = () => {
         </section>
       </nav>
       <hr className="lg:mx-24" />
-    </main>
+    </>
 
     // <nav className="bg-white border-gray-200">
     //   <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">

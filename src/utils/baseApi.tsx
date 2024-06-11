@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const baseApi = axios.create({
-  baseURL: "http://localhost:8080",
+  baseURL: process.env.NEXT_PUBLIC_BASEAPI,
   timeout: 20000,
   headers: {
     "Content-Type": "application/json",

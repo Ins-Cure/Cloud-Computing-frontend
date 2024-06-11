@@ -2,10 +2,10 @@
 
 # dependencies
 /node_modules
-/src/utils/firebase/firebase.tsx
 /.pnp
 .pnp.js
 .yarn/install-state.gz
+.env.local
 
 # testing
 /coverage

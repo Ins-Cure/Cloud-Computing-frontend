@@ -1,6 +1,7 @@
 import { baseApi } from "@/utils/baseApi";
 import { setToken } from "@/utils/token";
 import { NextRouter } from "next/router";
+import toast from "react-hot-toast";
 
 export async function handleSubmit(
   event: React.FormEvent<HTMLFormElement>,
@@ -30,15 +31,26 @@ async function handleFetch(email: string, pass: string, router: NextRouter) {
     pass: pass,
   };
 
-  await postLogin(data).then(() => router.push("/"));
+  await postLogin(data, router);
 }
 
-async function postLogin(data: { email: string; pass: string }) {
+async function postLogin(
+  data: {
+    email: string;
+    pass: string;
+  },
+  router: NextRouter
+) {
   try {
     const response = await baseApi.post(`/inscure/login`, data);
     console.log(response.data.data);
     setToken("token", response.data.data);
+    router.push({
+      pathname: "/",
+      query: { login: "success" },
+    });
   } catch (error) {
     console.error("Failed to login:", error);
+    toast.error("Login failed.");
   }
 }
