@@ -2,6 +2,8 @@ import { baseApi } from "@/utils/baseApi";
 import { setToken } from "@/utils/token";
 import { NextRouter } from "next/router";
 import toast from "react-hot-toast";
+import { GetUser } from "./getUser";
+import { setProfpic } from "@/utils/profilepic";
 
 export async function handleSubmit(
   event: React.FormEvent<HTMLFormElement>,
@@ -45,6 +47,10 @@ async function postLogin(
     const response = await baseApi.post(`/inscure/login`, data);
     console.log(response.data.data);
     setToken("token", response.data.data);
+
+    const user = await GetUser();
+    setProfpic("profpic", user.data.picture);
+
     router.push({
       pathname: "/",
       query: { login: "success" },

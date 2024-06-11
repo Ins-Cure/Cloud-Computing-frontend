@@ -13,6 +13,7 @@ import { GetUser } from "@/fetch/getUser";
 import { User } from "@/entity/user";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
+import { getProfpic, removeProfpic } from "@/utils/profilepic";
 
 const ptSans = PT_Sans({ weight: "400", subsets: ["latin"] });
 const ptSansBold = PT_Sans({ weight: "700", subsets: ["latin"] });
@@ -39,6 +40,7 @@ const Navbar = () => {
 
   function handleLogout() {
     removeToken();
+    removeProfpic();
     router.push({
       pathname: "/login",
       query: { logout: "success" },
@@ -50,9 +52,13 @@ const Navbar = () => {
     setToken(getToken());
   }, [token]);
 
+  const profile_picture = getProfpic();
+
   return (
     <>
-      <nav className="h-1/5 flex justify-between px-8 items-center py-9 bg-white text-black w-auto lg:px-24">
+      <nav
+        className={` h-1/5 flex justify-between items-center px-8 py-9 bg-white text-black w-auto lg:px-24`}
+      >
         <div className="flex items-center gap-8 text-black">
           <section className="flex items-center gap-4">
             {/* menu */}
@@ -114,7 +120,7 @@ const Navbar = () => {
           {/* history icon */}
           <Link href="/history" passHref>
             <div className="flex items-center gap-4 group">
-              <div className="font-bold tracking-widesttransform -translate-x-4 opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100 group-hover:translate-x-0 bg-gray-100 rounded-full px-4 py-1">
+              <div className="hidden absolute font-bold tracking-widesttransform -translate-x-4 opacity-0 transition-all duration-300 ease-in-out group-hover:block group-hover:opacity-100 group-hover:-translate-x-28 bg-gray-100 rounded-full px-4 py-1">
                 HISTORY
               </div>
               <FaHistory size={20} />
@@ -127,13 +133,17 @@ const Navbar = () => {
           ) : (
             <div className="group">
               <Link href="/profile">
-                <Image
-                  className="rounded-full"
-                  width={35}
-                  height={25}
-                  src="https://i.pravatar.cc/300"
-                  alt="avatar-logged-in"
-                />
+                <div>
+                  {profile_picture && (
+                    <Image
+                      className="rounded-full border-2 border-purple-500 overflow-hidden w-10 h-10"
+                      width={35}
+                      height={35}
+                      src={profile_picture}
+                      alt="avatar-logged-in"
+                    />
+                  )}
+                </div>
               </Link>
               <div className="flex flex-col gap-2 right-5 lg:right-20 absolute mt-2 w-max rounded-lg bg-gray-100 px-5 py-1 transition-all duration-300 ease-in-out opacity-0 transform translate-y-2 z-10 group-hover:flex-col group-hover:opacity-100 group-hover:translate-y-0">
                 <Link href="/profile" className=" hover:text-[#9AC8CD]">
