@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import { useRouter } from "next/router";
 import { withAuth } from "@/utils/auth";
+import { MdDelete } from "react-icons/md";
 
 import { GetHistory } from "@/fetch/getHistory";
 import { Prediction } from "@/entity/prediction";
+import { deletePredictionbyID } from "@/fetch/deletePredictionbyId";
 
 const History = () => {
   const [token, setToken] = useState<string | null>(null);
@@ -47,8 +49,18 @@ const History = () => {
           history?.map((predict) => (
             <div
               key={predict.id}
-              className="w-full max-w-lg bg-white shadow-md rounded-lg p-6 mb-4"
+              className="relative w-full max-w-lg bg-white shadow-md rounded-lg p-6 mb-4"
             >
+              <button
+                onClick={() =>
+                  deletePredictionbyID(predict.id, predict.gambar).then(() =>
+                    router.reload()
+                  )
+                }
+                className="absolute top-2 right-2 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
+              >
+                <MdDelete className="size-7" />
+              </button>
               <p className="text-gray-700">
                 <span className="font-bold">Prediction:</span>{" "}
                 {predict.hasil_prediksi}
@@ -61,7 +73,7 @@ const History = () => {
                 <span className="font-bold">Image:</span>
                 <div className="w-full h-64 mt-2">
                   <img
-                    src={`https://storage.googleapis.com/example-bucket-test-cc-trw/${predict.gambar}`}
+                    src={`${predict.gambar}`}
                     alt="Prediction image"
                     className="w-full h-full rounded-lg"
                   />
