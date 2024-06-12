@@ -7,7 +7,7 @@ export async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
   const formData = new FormData(event.currentTarget); // Get form data
 
   const file = formData.get("fileInput"); // Get the file input value
-
+  event.currentTarget.reset();
   if (file instanceof File) {
     return await handleFetch(file); // Call handleFetch with the file object
   } else {
