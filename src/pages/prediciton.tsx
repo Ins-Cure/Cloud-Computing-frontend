@@ -6,8 +6,6 @@ import { GetUser } from "@/fetch/getUser";
 import { User } from "@/entity/user";
 import { handleSubmit } from "@/fetch/postPredict";
 import { Prediction } from "@/entity/prediction";
-import { GetDiseasebyId } from "@/fetch/getDiseasebyID";
-import { Disease } from "@/entity/disease";
 import Loading from "@/components/Loading/loading";
 
 const Predictions = () => {
@@ -21,7 +19,7 @@ const Predictions = () => {
   const [Predict, setPredict] = useState<Prediction | null>(null);
   const [isLoading, setLoading] = useState(false);
 
-  const [disease, setDisease] = useState<Disease | null>(null);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   useEffect(() => {
     const authenticate = async () => {
@@ -63,12 +61,6 @@ const Predictions = () => {
       })
       .then((response) => {
         console.log("calling getdisease by id");
-        return GetDiseasebyId(+response.hasil_prediksi);
-      })
-      .then((diseaseResponse) => {
-        console.log("calling setDisease");
-        setDisease(diseaseResponse.data);
-        console.log("response get :", diseaseResponse);
       })
       .catch((error) => {
         console.error("Failed to fetch user data:", error);
@@ -79,6 +71,17 @@ const Predictions = () => {
 
   const goToPage = (path: string) => {
     router.push(path);
+  };
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setSelectedImage(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   return (
@@ -107,9 +110,19 @@ const Predictions = () => {
                     name="fileInput"
                     type="file"
                     required
+                    onChange={handleImageChange}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md text-black"
                   />
                 </div>
+                {selectedImage && (
+                  <div className="mb-4">
+                    <img
+                      src={selectedImage}
+                      alt="Selected"
+                      className="w-full h-auto rounded-md"
+                    />
+                  </div>
+                )}
                 <button
                   type="submit"
                   className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -153,11 +166,8 @@ const Predictions = () => {
                 </button>
 
                 <p className="text-gray-700 dark:text-gray-300 mb-2">
-                  <span className="font-bold">Prediction:</span> {disease?.name}
-                </p>
-                <p className="text-gray-700 dark:text-gray-300 mb-2">
-                  <span className="font-bold">Penjelasan:</span>{" "}
-                  {disease?.headline}
+                  <span className="font-bold">Prediction:</span>{" "}
+                  {Predict?.hasil_prediksi}
                 </p>
                 <p className="text-gray-700 dark:text-gray-300 mb-2">
                   <span className="font-bold">Date:</span> {Predict?.tgl}
