@@ -27,21 +27,28 @@ const Diseases: React.FC = () => {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen w-full grid grid-cols-2 gap-y-4 gap-x-0 justify-center pt-5 place-items-center">
+      <div className="min-h-screen w-full flex flex-col gap-4 md:grid md:grid-cols-2 lg:grid lg:grid-cols-2 lg:gap-y-4 lg:gap-x-4 justify-center pt-5 place-items-center px-5 bg-gradient-to-b from-slate-100 to-purple-900">
         {disease?.length != 0 && disease ? (
-          disease?.map((d) => (
+          disease?.map((d, index) => (
             <div
               key={d.id}
-              className={`flex align-middle rounded-xl bg-white text-gray-700 shadow-md flex-row max-w-xl h-80`}
+              className={`flex align-middle rounded-xl bg-white text-gray-700 shadow-md flex-col sm:w-full md:w-10/12 md:max-h-full lg:flex-row lg:h-80 ${
+                index === 10
+                  ? "col-span-2 flex justify-center md:w-5/12 lg:w-1/2 "
+                  : "lg:w-full"
+              }`}
             >
-              <Image
-                src="https://img.freepik.com/premium-vector/acne-skin-problems-concept-man-with-magnifying-glass-is-looking-acne-his-facial-falt-vector-cartoon-illustration_77116-1182.jpg?w=900"
-                alt="disease-img"
-                width={250}
-                height={250}
-                className="rounded-xl object-cover"
-              />
-              <div className="w-3/4 p-6 flex flex-col justify-between">
+              <div className="flex justify-center items-center sm:w-full lg:w-2/5 h-full p-5">
+                <Image
+                  src="/dna.png"
+                  alt="disease-img"
+                  width={512}
+                  height={10}
+                  className="rounded-xl w-2/5 lg:w-full"
+                />
+              </div>
+
+              <div className="w-full lg:w-3/5 p-6 flex flex-col justify-between text-center items-center lg:items-start lg:text-justify">
                 <div>
                   <h6
                     className={`${poppins.className} block mb-4 font-sans text-base antialiased leading-relaxed tracking-normal text-gray-700 uppercase`}
