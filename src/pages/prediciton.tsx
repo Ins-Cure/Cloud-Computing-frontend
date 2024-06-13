@@ -59,18 +59,11 @@ const Predictions = () => {
         setPredict(response);
         return response;
       })
-      .then((response) => {
-        console.log("calling getdisease by id");
-      })
       .catch((error) => {
         console.error("Failed to fetch user data:", error);
         // Handle error case, possibly redirect to login
       })
       .finally(() => setLoading(false));
-  };
-
-  const goToPage = (path: string) => {
-    router.push(path);
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -143,12 +136,18 @@ const Predictions = () => {
             <Loading />
           ) : Predict ? (
             <>
-              {" "}
               <div className="mt-8 w-full max-w-lg bg-white shadow-md rounded-lg p-8 dark:bg-gray-800">
                 <h2 className="font-bold text-2xl text-gray-800 dark:text-gray-200 mb-4">
                   Prediction Result
                 </h2>
 
+                <p className="text-gray-700 dark:text-gray-300 mb-2">
+                  <span className="font-bold">Prediction:</span>{" "}
+                  {Predict?.hasil_prediksi}
+                </p>
+                <p className="text-gray-700 dark:text-gray-300 mb-2">
+                  <span className="font-bold">Date:</span> {Predict?.tgl}
+                </p>
                 <button
                   onClick={() =>
                     router.push({
@@ -160,18 +159,18 @@ const Predictions = () => {
                       },
                     })
                   }
-                  className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4 transition-colors duration-300 ease-in-out"
+                  className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 mb-4 transition-colors duration-300 ease-in-out"
                 >
                   Consult
                 </button>
-
-                <p className="text-gray-700 dark:text-gray-300 mb-2">
-                  <span className="font-bold">Prediction:</span>{" "}
-                  {Predict?.hasil_prediksi}
-                </p>
-                <p className="text-gray-700 dark:text-gray-300 mb-2">
-                  <span className="font-bold">Date:</span> {Predict?.tgl}
-                </p>
+                <button
+                  onClick={() =>
+                    console.log("ke halaman diseases", Predict.disease_id)
+                  }
+                  className="w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition-colors duration-300 ease-in-out"
+                >
+                  Learn More About This Disease
+                </button>
               </div>
             </>
           ) : (
