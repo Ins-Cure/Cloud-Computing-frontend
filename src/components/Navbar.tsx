@@ -160,7 +160,7 @@ const Navbar = () => {
           // </Link> */}
         </section>
       </nav>
-      <hr className="lg:mx-24" />
+      <hr className="mx-24 lg:mx-24" />
     </>
 
     // <nav className="bg-white border-gray-200">
