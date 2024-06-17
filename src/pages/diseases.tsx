@@ -68,7 +68,7 @@ const Diseases: React.FC = () => {
                   href={`/disease/${d.id}`}
                   className="flex items-center gap-2 px-6 py-3 mt-2 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none hover:bg-gray-900/10 active:bg-gray-900/20"
                 >
-                  <h6>See more...</h6>
+                  <h6>Get More Information</h6>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
