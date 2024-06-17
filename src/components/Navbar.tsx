@@ -75,7 +75,7 @@ const Navbar = () => {
               INSCURE
             </Link>
             <Image
-              src="/inscure.jpg"
+              src="/InScure.svg"
               width={35}
               height={35}
               alt="inscure logo"
