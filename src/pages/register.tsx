@@ -11,7 +11,7 @@ const RegisterUser = () => {
     <>
       <Navbar />
       <Toaster position="top-right" reverseOrder={false} />
-      <div className="min-h-fit w-full flex justify-center  bg-gray-100 p-5">
+      <div className="min-h-screen w-full flex justify-center  bg-gray-100 p-5">
         <form
           onSubmit={(e) => {
             handleSubmit(e, router);
