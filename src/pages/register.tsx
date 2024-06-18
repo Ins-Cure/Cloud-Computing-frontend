@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "@/components/Navbar";
 import { handleSubmit } from "@/fetch/postRegister";
 import { useRouter } from "next/router";
+import { Toaster } from "react-hot-toast";
 
 const RegisterUser = () => {
   const router = useRouter();
@@ -9,6 +10,7 @@ const RegisterUser = () => {
   return (
     <>
       <Navbar />
+      <Toaster position="top-right" reverseOrder={false} />
       <div className="min-h-fit w-full flex justify-center  bg-gray-100 p-5">
         <form
           onSubmit={(e) => {

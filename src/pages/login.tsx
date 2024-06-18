@@ -16,6 +16,10 @@ const LoginUser = () => {
       toast.success("Logout successful");
       toastShownRef.current = true;
       replace(pathname, undefined, { shallow: true });
+    } else if (query.register == "success" && !toastShownRef.current) {
+      toast.success("Register successful");
+      toastShownRef.current = true;
+      replace(pathname, undefined, { shallow: true });
     }
   }, [query.logout, pathname, replace]);
 

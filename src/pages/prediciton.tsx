@@ -147,6 +147,10 @@ const Predictions = () => {
                     {Predict?.hasil_prediksi}
                   </p>
                   <p className="text-purple-600 mb-2">
+                    <span className="font-bold">Confidence Score:</span>{" "}
+                    {Predict?.confidence}
+                  </p>
+                  <p className="text-purple-600 mb-2">
                     <span className="font-bold">Date:</span> {Predict?.tgl}
                   </p>
                 </div>
@@ -172,7 +176,7 @@ const Predictions = () => {
                   </button>
                   <button
                     onClick={() =>
-                      console.log("ke halaman diseases", Predict.disease_id)
+                      router.push(`/disease/${Predict?.disease_id}`)
                     }
                     className="w-full border border-purple-500 hover:text-white text-purple-500 py-2 px-4 rounded transition-colors duration-300 ease-in-out"
                   >

@@ -1,12 +1,10 @@
 import Navbar from "@/components/Navbar";
-import { setToken, removeToken } from "@/utils/token";
 import { useRouter } from "next/router";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import Image from "next/image";
 
 export default function Home() {
-  const random = Math.random();
   const router = useRouter();
   const { query, pathname, replace } = router;
   const toastShownRef = useRef(false);
