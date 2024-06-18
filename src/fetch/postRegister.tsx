@@ -1,23 +1,6 @@
 import { baseApi } from "@/utils/baseApi";
 import { NextRouter } from "next/router";
-
-async function handlefetch(
-  name: string,
-  email: string,
-  notelp: string,
-  pass: string,
-  router: NextRouter
-) {
-  const data = {
-    name: name,
-    email: email,
-    notelp: notelp,
-    pass: pass,
-  };
-  // console.log(data);
-  postRegister(data, router);
-  // Configure the fetch request with method, headers, and body
-}
+import toast from "react-hot-toast";
 
 export async function handleSubmit(
   event: React.FormEvent<HTMLFormElement>,
@@ -37,7 +20,7 @@ export async function handleSubmit(
     typeof name === "string" &&
     typeof notelp === "string"
   ) {
-    handlefetch(name, email, notelp, password, router); // Call handleFetch with form input values
+    handlefetch(name, email, notelp, password, router);
   } else {
     // Handle the case where email or password is null or not a string
     console.error("Email or password is missing or not a string");
@@ -46,8 +29,34 @@ export async function handleSubmit(
   event.currentTarget.reset();
 }
 
-export async function postRegister(data: object, router: NextRouter) {
-  const response = await baseApi.post(`/inscure/add`, data);
-  console.log(response.data.message);
-  router.push("/login");
+async function handlefetch(
+  name: string,
+  email: string,
+  notelp: string,
+  pass: string,
+  router: NextRouter
+) {
+  const data = {
+    name: name,
+    email: email,
+    notelp: notelp,
+    pass: pass,
+  };
+  // console.log(data);
+  await postRegister(data, router);
+}
+
+async function postRegister(data: object, router: NextRouter) {
+  try {
+    const response = await baseApi.post(`/inscure/add`, data);
+    console.log(response.data.message);
+
+    router.push({
+      pathname: "/login",
+      query: { register: "success" },
+    });
+  } catch (error) {
+    console.error("Failed to register:", error);
+    toast.error("Register failed.");
+  }
 }

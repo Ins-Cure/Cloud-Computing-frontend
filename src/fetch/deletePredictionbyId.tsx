@@ -10,7 +10,7 @@ export async function deletePredictionbyID(
     predictLink = predictLink.split("/").pop() || "";
 
     const response = await baseApi.delete(
-      `/prediction/del/${predictId}/${predictLink}`,
+      `/prediction/del?p_id=${predictId}&p_image=${predictLink}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
