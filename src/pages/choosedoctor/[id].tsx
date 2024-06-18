@@ -54,10 +54,10 @@ const History = () => {
           doctor?.map((doctor) => (
             <div
               key={doctor.id}
-              className="w-full max-w-lg bg-white shadow-lg rounded-lg p-6 mb-6 transform hover:scale-105 transition-transform duration-300"
+              className="w-full max-w-lg bg-white shadow-lg shadow-purple-200 rounded-lg p-6 mb-8 transform hover:scale-105 transition-transform duration-300"
             >
               <p className="text-gray-800 text-lg mb-2">
-                <span className="font-bold">Nama:</span> {doctor.name}
+                <span className="font-bold">Name:</span> {doctor.name}
               </p>
               <p className="text-gray-800 text-lg mb-2">
                 <span className="font-bold">Email:</span> {doctor.email}
@@ -81,7 +81,7 @@ const History = () => {
                     );
                   }
                 }}
-                className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded"
               >
                 Chat with this doctor
               </button>
