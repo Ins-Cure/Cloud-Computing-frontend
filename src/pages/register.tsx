@@ -16,7 +16,7 @@ const RegisterUser = () => {
           onSubmit={(e) => {
             handleSubmit(e, router);
           }}
-          className="formRegister flex flex-col gap-5 bg-white p-8 rounded-lg shadow-lg shadow-purple-200 w-full max-w-md text-black"
+          className="formRegister flex flex-col gap-5 h-fit bg-white p-8 rounded-lg shadow-lg shadow-purple-200 w-full max-w-md text-black"
         >
           <h2 className="text-2xl font-bold text-purple-800 self-center">
             Register
