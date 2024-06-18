@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { GetUser } from "@/fetch/getUser";
 import { useEffect, useRef, useState } from "react";
 import { User } from "@/entity/user";
-import { getProfpic } from "@/utils/profilepic";
+import { getProfpic, setProfpic } from "@/utils/profilepic";
 import Image from "next/image";
 import { putProfilePict } from "@/fetch/putProfilePict";
 
@@ -29,7 +29,9 @@ const Diseases: React.FC = () => {
       var bodyFormData = new FormData();
       bodyFormData.append("file", file);
 
-      putProfilePict(bodyFormData).then(() => router.reload());
+      putProfilePict(bodyFormData).then(() => {
+        router.reload();
+      });
     }
   };
 
@@ -38,6 +40,10 @@ const Diseases: React.FC = () => {
     GetUser()
       .then((response) => {
         setUser(response.data);
+      })
+      .then(() => {
+        user?.picture && setProfpic("profpic", user.picture);
+        console.log(getProfpic(), user?.picture);
       })
       .catch((error) => {});
   }, []);
