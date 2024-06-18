@@ -49,7 +49,7 @@ const History = () => {
           history?.map((predict) => (
             <div
               key={predict.id}
-              className="relative w-full max-w-lg bg-white shadow-md rounded-lg p-6 mb-4"
+              className="relative w-full max-w-lg bg-white shadow-md rounded-lg p-6 mb-4 shadow-purple-300"
             >
               <button
                 onClick={() =>
