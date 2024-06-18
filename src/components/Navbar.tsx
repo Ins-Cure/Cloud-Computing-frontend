@@ -3,7 +3,7 @@ import Link from "next/link";
 import { getToken, removeToken } from "@/utils/token";
 import { useState } from "react";
 import { useEffect } from "react";
-import { PT_Sans } from "next/font/google";
+import { PT_Sans, Poppins } from "next/font/google";
 import Image from "next/image";
 import { FiMenu } from "react-icons/fi";
 import { FaHistory } from "react-icons/fa";
@@ -17,6 +17,8 @@ import { getProfpic, removeProfpic } from "@/utils/profilepic";
 
 const ptSans = PT_Sans({ weight: "400", subsets: ["latin"] });
 const ptSansBold = PT_Sans({ weight: "700", subsets: ["latin"] });
+const poppins = Poppins({ weight: "400", subsets: ["latin"] });
+const poppinsBold = Poppins({ weight: "600", subsets: ["latin"] });
 
 const Navbar = () => {
   // let token = withAuth();
@@ -26,10 +28,10 @@ const Navbar = () => {
   const router = useRouter();
 
   const navLinks = [
-    { label: "HOME", href: "/" },
-    { label: "DISEASES", href: "/diseases" },
-    { label: "PREDICTION", href: "/prediciton" },
-    { label: "CONSULTATION", href: "/consultation" },
+    { label: "home", href: "/" },
+    { label: "diseases", href: "/diseases" },
+    { label: "prediction", href: "/prediciton" },
+    { label: "consultation", href: "/consultation" },
   ];
 
   const navLinksDoctor = [
@@ -57,7 +59,7 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className={` h-1/5 flex justify-between items-center px-8 py-9 bg-white text-black w-auto lg:px-24`}
+        className={`h-1/5 flex justify-between items-center px-8 py-9 bg-white text-black w-auto lg:px-24`}
       >
         <div className="flex items-center gap-8 text-black">
           <section className="flex items-center gap-4">
@@ -70,7 +72,7 @@ const Navbar = () => {
             />
             <Link
               href="http://localhost:3000/"
-              className={`${ptSansBold.className} flex items-center tracking-widest text-2xl`}
+              className={`${poppinsBold.className} flex items-center tracking-widest text-2xl`}
             >
               INSCURE
             </Link>
@@ -82,15 +84,6 @@ const Navbar = () => {
               className="rounded-full"
             />
           </section>
-          {navLinks.map((link, index) => (
-            <Link
-              key={index}
-              className="hidden lg:block font-bold text-sm text-black hover:text-[#9AC8CD] duration-500 tracking-wide"
-              href={link.href}
-            >
-              {link.label}
-            </Link>
-          ))}
         </div>
 
         {/* mobile menu sidebar */}
@@ -116,12 +109,28 @@ const Navbar = () => {
           </section>
         </div>
 
+        <div className="flex gap-8">
+          {navLinks.map((link, index) => (
+            <div key={index} className="relative inline-block group">
+              <Link
+                className={`${poppins.className} hidden lg:block font-light text-lg text-black hover:text-purple-500 duration-500 tracking-wide`}
+                href={link.href}
+              >
+                {link.label}
+              </Link>
+              <span className="absolute left-0 right-0 h-0.5 opacity-0 transition-opacity duration-300 transform group-hover:opacity-100 group-hover:translate-y-0 bg-purple-500"></span>
+            </div>
+          ))}
+        </div>
+
         <section className="flex items-center gap-4">
           {/* history icon */}
           <Link href="/history" passHref>
             <div className="flex items-center gap-4 group">
-              <div className="hidden absolute font-bold tracking-widesttransform -translate-x-4 opacity-0 transition-all duration-300 ease-in-out group-hover:block group-hover:opacity-100 group-hover:-translate-x-28 bg-gray-100 rounded-full px-4 py-1">
-                HISTORY
+              <div
+                className={`${poppins.className} text-white hidden absolute font-bold tracking-widesttransform -translate-x-4 opacity-0 transition-all duration-300 ease-in-out group-hover:block group-hover:opacity-100 group-hover:-translate-x-28 bg-purple-400 rounded-full px-4 py-1`}
+              >
+                history
               </div>
               <FaHistory size={20} />
             </div>
@@ -145,11 +154,17 @@ const Navbar = () => {
                   )}
                 </div>
               </Link>
-              <div className="flex flex-col gap-2 right-5 lg:right-20 absolute mt-2 w-max rounded-lg bg-gray-100 px-5 py-1 transition-all duration-300 ease-in-out opacity-0 transform translate-y-2 z-10 group-hover:flex-col group-hover:opacity-100 group-hover:translate-y-0">
-                <Link href="/profile" className=" hover:text-[#9AC8CD]">
+              <div className="flex flex-col gap-2 right-5 lg:right-20 absolute mt-2 w-max rounded-lg bg-purple-400 px-5 py-1 transition-all duration-300 ease-in-out opacity-0 transform translate-y-2 z-10 group-hover:flex-col group-hover:opacity-100 group-hover:translate-y-0">
+                <Link
+                  href="/profile"
+                  className="text-white hover:text-purple-500"
+                >
                   Profile
                 </Link>
-                <button onClick={handleLogout} className="hover:text-[#9AC8CD]">
+                <button
+                  onClick={handleLogout}
+                  className="text-white hover:text-purple-500"
+                >
                   Logout
                 </button>
               </div>
