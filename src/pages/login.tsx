@@ -46,41 +46,48 @@ const LoginUser = () => {
         <Loading />
       ) : (
         <>
-          <div className="min-h-screen w-full flex justify-center items-center flex-col gap-10 bg-gray-100 p-5">
+          <div className="min-h-fit w-full flex items-center flex-col gap-10 bg-gray-100 p-5">
             <form
               onSubmit={(e) => {
                 handleFormSubmit(e, router);
               }}
-              className="flex flex-col gap-5 bg-white p-8 rounded-lg shadow-lg w-full max-w-md text-black"
+              className="flex flex-col gap-5 bg-white p-8 rounded-lg shadow-lg shadow-purple-200 w-full max-w-md text-black"
             >
-              <h2 className="text-2xl font-bold text-gray-800">Login Page</h2>
+              <h2 className="text-3xl font-bold text-purple-800 pb-5 self-center">
+                Login
+              </h2>
               <input
-                type="text"
+                type="email"
                 name="email"
                 placeholder="Email"
                 required
-                className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+                className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500"
               />
               <input
+                type="password"
                 name="password"
                 placeholder="Password"
                 required
-                className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+                className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500"
               />
               <button
                 type="submit"
-                className="p-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300"
+                className="p-3 bg-purple-600 text-white rounded-lg hover:bg-purple-500 transition duration-300 font-semibold"
               >
                 Submit
               </button>
-              <p className="self-center">Dont Have account ? Please Register</p>
-              <button
-                type="button"
-                onClick={() => goToPage("/register")}
-                className="p-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300"
-              >
-                Register
-              </button>
+              <div className="flex flex-col gap-2 shadow-lg w-full max-w-md">
+                <p className="self-center">
+                  Dont Have account ? Please Register
+                </p>
+                <button
+                  type="button"
+                  onClick={() => goToPage("/register")}
+                  className="p-3 border border-purple-500 text-black rounded-lg hover:bg-purple-100 transition duration-300"
+                >
+                  Register
+                </button>
+              </div>
             </form>
           </div>
         </>
