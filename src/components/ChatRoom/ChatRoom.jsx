@@ -22,6 +22,12 @@ function ChatRoom({ userID, doctorID, role }) {
   });
   const [formValue, setFormValue] = useState("");
 
+  useEffect(() => {
+    if (messages && dummy.current) {
+      dummy.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages]);
+
   if (loading) return <div>Loading...</div>;
   if (error) {
     console.log("error query:", error);
@@ -47,7 +53,7 @@ function ChatRoom({ userID, doctorID, role }) {
 
   return (
     <>
-      <div className="flex flex-col h-[75vh] w-full max-w-3xl mx-auto bg-white shadow-md rounded-lg overflow-hidden shadow-purple-200 border-2 border-purple-700">
+      <div className="flex flex-col h-[75vh] w-full max-w-3xl mx-auto bg-slate-300 shadow-md rounded-lg overflow-hidden shadow-purple-200 border-2 border-purple-700">
         <main className="flex-1 overflow-y-auto p-4 space-y-4">
           {messages &&
             messages.map((msg) => (
