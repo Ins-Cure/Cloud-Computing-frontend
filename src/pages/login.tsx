@@ -20,6 +20,10 @@ const LoginUser = () => {
       toast.success("Register successful");
       toastShownRef.current = true;
       replace(pathname, undefined, { shallow: true });
+    } else if (query.auth == "false" && !toastShownRef.current) {
+      toast.error("Please Login First");
+      toastShownRef.current = true;
+      replace(pathname, undefined, { shallow: true });
     }
   }, [query.logout, pathname, replace]);
 

@@ -55,6 +55,12 @@ const RegisterUser = () => {
           >
             Submit
           </button>
+          <p className="self-center">
+            Already Have an account ? Please{" "}
+            <a href="/login" className="underline hover:text-purple-500">
+              Login
+            </a>
+          </p>
         </form>
       </div>
     </>

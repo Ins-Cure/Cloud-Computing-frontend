@@ -25,7 +25,10 @@ const Predictions = () => {
     const authenticate = async () => {
       const authToken = await withAuth();
       if (!authToken) {
-        router.push("/login");
+        router.push({
+          pathname: "/login",
+          query: { auth: "false" },
+        });
       } else {
         setToken(authToken);
 
@@ -84,7 +87,7 @@ const Predictions = () => {
         {cekUser ? (
           user ? (
             <>
-              <h1 className="font-bold text-4xl text-gray-800 text-center">
+              <h1 className="font-bold text-4xl text-purple-800 text-center">
                 Hello {user.name}, This is the Prediction Page
               </h1>
               <form

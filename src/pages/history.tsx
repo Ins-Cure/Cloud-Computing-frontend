@@ -19,7 +19,10 @@ const History = () => {
     const authenticate = async () => {
       const authToken = await withAuth();
       if (!authToken) {
-        router.push("/login");
+        router.push({
+          pathname: "/login",
+          query: { auth: "false" },
+        });
       } else {
         setToken(authToken);
         GetHistory()
