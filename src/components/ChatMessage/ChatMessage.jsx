@@ -16,8 +16,8 @@ function ChatMessage(props) {
 
   const messageClass =
     uid === currID
-      ? "bg-blue-500 text-white self-end"
-      : "bg-gray-300 text-black self-start";
+      ? "bg-purple-500 text-white self-end"
+      : "bg-white text-purple-600 self-start";
 
   return (
     <>
@@ -25,7 +25,7 @@ function ChatMessage(props) {
         className={`flex ${uid === currID ? "justify-end" : "justify-start"}`}
       >
         <div
-          className={`p-2 rounded-lg mb-2 max-w-xs break-words ${messageClass}`}
+          className={`p-2 rounded-lg mb-2 border-2 border-purple-800 max-w-xs break-words ${messageClass}`}
         >
           <p>{text}</p>
         </div>
