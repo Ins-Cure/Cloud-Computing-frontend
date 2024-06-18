@@ -21,7 +21,9 @@ const Diseases: React.FC = () => {
     }
   };
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const file = event.target.files?.[0];
     if (file) {
       setSelectedFile(file);
@@ -29,9 +31,17 @@ const Diseases: React.FC = () => {
       var bodyFormData = new FormData();
       bodyFormData.append("file", file);
 
-      putProfilePict(bodyFormData).then(() => {
+      try {
+        await putProfilePict(bodyFormData);
+        const response = await GetUser();
+        setUser(response.data);
+
+        setProfpic("profpic", response.data.picture);
+
         router.reload();
-      });
+      } catch (error) {
+        console.error("failed to update profpic", error);
+      }
     }
   };
 
@@ -40,10 +50,6 @@ const Diseases: React.FC = () => {
     GetUser()
       .then((response) => {
         setUser(response.data);
-      })
-      .then(() => {
-        user?.picture && setProfpic("profpic", user.picture);
-        console.log(getProfpic(), user?.picture);
       })
       .catch((error) => {});
   }, []);
