@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   width="300"
+   height="300"
+   viewBox="0 0 79.374998 79.375002"
+   version="1.1"
+   id="svg1146">
+  <defs
+     id="defs1140" />
+  <metadata
+     id="metadata1143">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1">
+    <g
+       id="g1138"
+       transform="matrix(1.0415666,0,0,1.0415666,-8.5646403,-329.00102)"
+       style="stroke-width:0.960092">
+      <path
+         id="rect1036"
+         style="fill:#13957e;fill-opacity:1;stroke:none;stroke-width:1.92018;stroke-linecap:round;stroke-linejoin:round"
+         d="m 16.871759,315.87132 c -4.79146,0 -8.648935,3.85747 -8.648935,8.64895 v 58.90949 c 0,1.02183 0.1843649,1.99703 0.5069,2.90557 l 9.632304,-37.85488 h 24.117057 l 1.66704,-6.5511 c 0.01708,-0.0672 0.08638,-0.12173 0.155702,-0.12173 h 10.241052 c 0.06932,0 0.111923,0.0545 0.09483,0.12173 l -1.66704,6.5511 H 65.37981 c 0.464769,0 0.930797,-0.36203 1.045411,-0.81247 l 8.09053,-31.79666 z" />
+      <path
+         id="rect1042"
+         style="fill:#e1fbd5;fill-opacity:1;stroke:none;stroke-width:1.92018;stroke-linecap:round;stroke-linejoin:round"
+         d="m 83.923286,321.61463 -9.632304,37.85489 H 50.175094 l -1.66704,6.5511 c -0.01708,0.0672 -0.08732,0.12179 -0.156865,0.12179 H 38.110131 c -0.06932,0 -0.111971,-0.0545 -0.09483,-0.12179 l 1.667046,-6.5511 H 27.274369 c -0.464763,0 -0.931972,0.36208 -1.04658,0.81246 l -8.09053,31.79666 h 57.643992 c 4.79146,0 8.648935,-3.85746 8.648935,-8.64888 v -58.90949 c 6e-6,-1.02189 -0.184371,-1.99709 -0.5069,-2.90564 z" />
+    </g>
+  </g>
+</svg>
