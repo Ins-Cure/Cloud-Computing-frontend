@@ -70,7 +70,7 @@ export default function DetailDisease() {
     currHref = staticImages.at(numId - 1)?.href;
   }
 
-  console.log(currHref);
+  // console.log(currHref);
 
   useEffect(() => {
     GetDiseasebyId(numId)
@@ -78,7 +78,7 @@ export default function DetailDisease() {
         setDisease(response.data);
       })
       .catch((error) => {});
-  });
+  }, []);
 
   return (
     <>
