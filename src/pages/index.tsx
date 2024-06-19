@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect, useRef } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import Image from "next/image";
+import { IoMdArrowDown } from "react-icons/io";
 
 export default function Home() {
   const router = useRouter();
@@ -29,15 +30,23 @@ export default function Home() {
             <h1 className="text-5xl text-white">{`Your Skin's Health,`}</h1>
             <h1 className="text-5xl text-white">{`Predicted with `}</h1>
             <h1 className="text-5xl text-white">{`Precision.`}</h1>
-            <div className="flex align-middle gap-5 text-black mt-4 flex-col items-center lg:h-10 lg:items-start lg:flex-row text-base">
+            <div className="flex align-middle gap-5 text-black mt-4 flex-col items-center lg:h-10 lg:items-start lg:flex-row text-base  p-1 h-fit">
               <button
                 onClick={() => router.push("/prediciton")}
-                className="p-3 bg-purple-600 text-white rounded-lg hover:bg-purple-500 transition duration-300 w-1/2 "
+                className="p-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition duration-300 w-1/2 hover:shadow-purple-200 hover:shadow-md"
               >
                 Start to predict !
               </button>
-              <button className="p-3 border border-purple-800 text-white rounded-lg hover:bg-purple-300 hover:bg-opacity-10 hover:border-purple-600 transition duration-300 w-1/2">
-                <a href="#about-us">About us</a>
+              <button className=" p-3 border border-purple-800 text-white rounded-lg hover:bg-purple-300 hover:bg-opacity-10 hover:border-purple-600 transition duration-300 w-1/2 hover:shadow-purple-200 hover:shadow-md h-12">
+                <a
+                  href="#about-us"
+                  className="flex justify-around items-center h-full"
+                >
+                  <p>About Us</p>
+                  <div className="bg-white text-white rounded-full p-1 animate-bounce shadow-purple-200 shadow-md">
+                    <IoMdArrowDown color="purple" className="size-6" />
+                  </div>
+                </a>
               </button>
             </div>
           </div>

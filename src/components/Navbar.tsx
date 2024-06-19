@@ -71,17 +71,17 @@ const Navbar = () => {
               onClick={() => setisSideMenuOpen(true)}
             />
             <Link
-              href="http://localhost:3000/"
+              href="/"
               className={`${poppinsBold.className} flex items-center tracking-widest text-2xl`}
             >
               INSCURE
             </Link>
             <Image
               src="/InScure.svg"
-              width={35}
-              height={35}
+              width={40}
+              height={40}
               alt="inscure logo"
-              className="rounded-full"
+              className="rounded-full border-4 border-purple-400 bg-slate-200 hover:animate-spin hover:border-purple-300 cursor-pointer"
             />
           </section>
         </div>
