@@ -58,6 +58,7 @@ export default function Home() {
               alt="inscure logo"
               className="rounded-full size-5/6 lg:size-max lg:translate-x-10"
               priority={true}
+              loading="eager"
             />
           </div>
         </div>
@@ -75,6 +76,7 @@ export default function Home() {
               alt="inscure logo"
               className="rounded-full size-5/6 lg:size-max lg:-translate-x-10"
               priority={true}
+              loading="eager"
             />
           </div>
           <div
