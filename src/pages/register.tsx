@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import { handleSubmit } from "@/fetch/postRegister";
 import { useRouter } from "next/router";
 import { Toaster } from "react-hot-toast";
+import Link from "next/link";
 
 const RegisterUser = () => {
   const router = useRouter();
@@ -57,9 +58,9 @@ const RegisterUser = () => {
           </button>
           <p className="self-center">
             Already Have an account ? Please{" "}
-            <a href="/login" className="underline hover:text-purple-500">
+            <Link href="/login" className="underline hover:text-purple-500">
               Login
-            </a>
+            </Link>
           </p>
         </form>
       </div>
