@@ -29,17 +29,15 @@ export default function Home() {
             <h1 className="text-5xl text-white">{`Your Skin's Health,`}</h1>
             <h1 className="text-5xl text-white">{`Predicted with `}</h1>
             <h1 className="text-5xl text-white">{`Precision.`}</h1>
-            <div className="flex align-middle gap-5 text-black mt-4 flex-col items-center lg:h-10 lg:items-start lg:flex-row">
-              <button className="border-2 border-purple-800 rounded-2xl bg-purple-300 hover:bg-purple-500 transition-colors text-lg w-32 h-10">
-                <a href="#about-us" className="text-white">
-                  About us
-                </a>
-              </button>
+            <div className="flex align-middle gap-5 text-black mt-4 flex-col items-center lg:h-10 lg:items-start lg:flex-row text-base">
               <button
                 onClick={() => router.push("/prediciton")}
-                className="border-2 border-purple-800 rounded-2xl bg-purple-300 hover:bg-purple-500 transition-colors text-lg w-44 h-10 text-white"
+                className="p-3 bg-purple-600 text-white rounded-lg hover:bg-purple-500 transition duration-300 w-1/2 "
               >
                 Start to predict !
+              </button>
+              <button className="p-3 border border-purple-800 text-white rounded-lg hover:bg-purple-300 hover:bg-opacity-10 hover:border-purple-600 transition duration-300 w-1/2">
+                <a href="#about-us">About us</a>
               </button>
             </div>
           </div>

@@ -154,7 +154,7 @@ const Diseases: React.FC = () => {
                   </button>
                   {IsNameOpen && (
                     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                      <div className="bg-white p-6 rounded-lg shadow-lg">
+                      <div className="bg-white p-6 rounded-lg shadow-lg shadow-purple-200 w-2/3 lg:w-1/3">
                         <h2 className="mb-4 text-lg font-bold">
                           Update Username
                         </h2>
@@ -182,7 +182,7 @@ const Diseases: React.FC = () => {
                             </button>
                             <button
                               type="submit"
-                              className="px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600 transition-colors"
+                              className="px-4 py-2 text-white bg-purple-600 rounded-lg hover:bg-purple-700 transition-colors"
                             >
                               Save
                             </button>
@@ -216,7 +216,7 @@ const Diseases: React.FC = () => {
 
                   {IsPhoneOpen && (
                     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                      <div className="bg-white p-6 rounded-lg shadow-lg">
+                      <div className="bg-white p-6 rounded-lg shadow-lg shadow-purple-200 w-2/3 lg:w-1/3">
                         <h2 className="mb-4 text-lg font-bold">
                           Update Phone Number
                         </h2>
@@ -247,7 +247,7 @@ const Diseases: React.FC = () => {
                             </button>
                             <button
                               type="submit"
-                              className="px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600 transition-colors"
+                              className="px-4 py-2 text-white bg-purple-600 rounded-lg hover:bg-purple-700 transition-colors"
                             >
                               Save
                             </button>

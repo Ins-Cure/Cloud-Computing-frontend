@@ -69,6 +69,10 @@ const History = () => {
                 {predict.hasil_prediksi}
               </p>
               <p className="text-gray-700">
+                <span className="font-bold">Confidence score:</span>{" "}
+                {predict.confidence}%
+              </p>
+              <p className="text-gray-700">
                 <span className="font-bold">Date:</span>{" "}
                 {new Date(predict.tgl).toLocaleString()}
               </p>

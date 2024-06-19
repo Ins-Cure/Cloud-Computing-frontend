@@ -87,7 +87,7 @@ const Predictions = () => {
         {cekUser ? (
           user ? (
             <>
-              <h1 className="font-bold text-4xl text-purple-800 text-center">
+              <h1 className="font-bold text-4xl text-black text-center">
                 Hello {user.name}, This is the Prediction Page
               </h1>
               <form
