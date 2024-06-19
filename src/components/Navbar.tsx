@@ -110,7 +110,7 @@ const Navbar = () => {
           </section>
         </div>
 
-        <div className="flex gap-8">
+        <div className="flex lg:gap-8">
           {navLinks.map((link, index) => (
             <div key={index} className="relative inline-block group">
               <Link
