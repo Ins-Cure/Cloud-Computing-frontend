@@ -52,7 +52,7 @@ export default function Home() {
           </div>
           <div className="lg:w-1/2 flex justify-center">
             <Image
-              src="/hero.png"
+              src="https://storage.googleapis.com/example-bucket-test-cc-trw/static-imgs/hero.png"
               width={750}
               height={750}
               alt="inscure logo"
@@ -68,7 +68,7 @@ export default function Home() {
         <div className="flex flex-col gap-3 lg:gap-10 h-full justify-center items-center lg:px-40 lg:flex-row">
           <div className="lg:w-1/2 flex justify-center">
             <Image
-              src="/photographer.png"
+              src="https://storage.googleapis.com/example-bucket-test-cc-trw/static-imgs/photographer.png"
               width={512}
               height={512}
               alt="inscure logo"

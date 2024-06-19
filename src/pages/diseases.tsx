@@ -40,7 +40,7 @@ const Diseases: React.FC = () => {
             >
               <div className="flex justify-center items-center sm:w-full lg:w-2/5 h-full p-5">
                 <Image
-                  src="/dna.png"
+                  src="https://storage.googleapis.com/example-bucket-test-cc-trw/static-imgs/dna.png"
                   alt="disease-img"
                   width={512}
                   height={10}
