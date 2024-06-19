@@ -29,6 +29,7 @@ const Navbar = () => {
 
   const navLinks = [
     { label: "home", href: "/" },
+    { label: "our teams", href: "/" },
     { label: "diseases", href: "/diseases" },
     { label: "prediction", href: "/prediciton" },
     { label: "consultation", href: "/consultation" },
@@ -59,7 +60,7 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className={`h-1/5 flex justify-between items-center px-8 py-9 bg-white text-black w-auto lg:px-24`}
+        className={`h-1/5 flex justify-between items-center px-8 py-9 bg-white text-black w-auto lg:px-20`}
       >
         <div className="flex items-center gap-8 text-black">
           <section className="flex items-center gap-4">
