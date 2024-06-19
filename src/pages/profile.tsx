@@ -6,14 +6,27 @@ import { User } from "@/entity/user";
 import { getProfpic, setProfpic } from "@/utils/profilepic";
 import Image from "next/image";
 import { putProfilePict } from "@/fetch/putProfilePict";
+import { HiOutlineWrench } from "react-icons/hi2";
+import { putUserName, putUserPhone } from "@/fetch/putUser";
 
 const Diseases: React.FC = () => {
   const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
   const [isClient, setIsClient] = useState(false);
+
   const profile_picture = getProfpic();
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
+  const [IsPhoneOpen, setIsPhoneOpen] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const handleOpenPhone = () => setIsPhoneOpen(true);
+  const handleClosePhone = () => setIsPhoneOpen(false);
+
+  const [IsNameOpen, setIsNameOpen] = useState(false);
+  const [UserName, setUserName] = useState("");
+  const handleOpenName = () => setIsNameOpen(true);
+  const handleCloseName = () => setIsNameOpen(false);
 
   const handleButtonClick = () => {
     if (fileInputRef.current) {
@@ -43,6 +56,37 @@ const Diseases: React.FC = () => {
         console.error("failed to update profpic", error);
       }
     }
+  };
+
+  const handlePhone = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    try {
+      const response = await putUserPhone(phoneNumber);
+      setUser(response);
+
+      // router.reload();
+    } catch (error) {
+      console.error("failed to update phone number", error);
+    }
+
+    handleClosePhone();
+  };
+
+  const handleName = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // fetch
+    try {
+      const response = await putUserName(UserName);
+      setUser(response);
+
+      // router.reload();
+    } catch (error) {
+      console.error("failed to update username", error);
+    }
+
+    handleCloseName();
   };
 
   useEffect(() => {
@@ -95,10 +139,59 @@ const Diseases: React.FC = () => {
               </h3>
             </div>
           </div>
-          <div className="border-t border-gray-200">
+          <div className="border-t border-purple-200">
             <dl>
               <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt className="text-sm font-medium text-gray-500">Username</dt>
+                <div className="flex gap-2">
+                  <dt className="text-sm font-medium text-gray-500">
+                    Username
+                  </dt>
+                  <button
+                    className="rounded-full px-1 py-1 text-white bg-purple-400 hover:bg-purple-600 transition-colors text-xs text-center"
+                    onClick={handleOpenName}
+                  >
+                    <HiOutlineWrench />
+                  </button>
+                  {IsNameOpen && (
+                    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                      <div className="bg-white p-6 rounded-lg shadow-lg">
+                        <h2 className="mb-4 text-lg font-bold">
+                          Update Username
+                        </h2>
+                        <form onSubmit={handleName}>
+                          <div className="mb-4">
+                            <label className="block mb-2 text-sm font-bold">
+                              New Username
+                            </label>
+                            <input
+                              id="username"
+                              type="text"
+                              className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                              value={UserName}
+                              onChange={(e) => setUserName(e.target.value)}
+                              required
+                            />
+                          </div>
+                          <div className="flex justify-end">
+                            <button
+                              type="button"
+                              className="px-4 py-2 mr-2 text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors"
+                              onClick={handleCloseName}
+                            >
+                              Cancel
+                            </button>
+                            <button
+                              type="submit"
+                              className="px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600 transition-colors"
+                            >
+                              Save
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  )}
+                </div>
                 <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                   {user?.name}
                 </dd>
@@ -110,9 +203,60 @@ const Diseases: React.FC = () => {
                 </dd>
               </div>
               <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt className="text-sm font-medium text-gray-500">
-                  Phone Number
-                </dt>
+                <div className="flex gap-2">
+                  <dt className="text-sm font-medium text-gray-500">
+                    Phone Number
+                  </dt>
+                  <button
+                    className="rounded-full px-1 py-1 text-white bg-purple-400 hover:bg-purple-600 transition-colors text-xs text-center"
+                    onClick={handleOpenPhone}
+                  >
+                    <HiOutlineWrench />
+                  </button>
+
+                  {IsPhoneOpen && (
+                    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                      <div className="bg-white p-6 rounded-lg shadow-lg">
+                        <h2 className="mb-4 text-lg font-bold">
+                          Update Phone Number
+                        </h2>
+                        <form onSubmit={handlePhone}>
+                          <div className="mb-4">
+                            <label
+                              className="block mb-2 text-sm font-bold"
+                              htmlFor="phone"
+                            >
+                              New Phone Number
+                            </label>
+                            <input
+                              id="phone"
+                              type="number"
+                              className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                              value={phoneNumber}
+                              onChange={(e) => setPhoneNumber(e.target.value)}
+                              required
+                            />
+                          </div>
+                          <div className="flex justify-end">
+                            <button
+                              type="button"
+                              className="px-4 py-2 mr-2 text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors"
+                              onClick={handleClosePhone}
+                            >
+                              Cancel
+                            </button>
+                            <button
+                              type="submit"
+                              className="px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600 transition-colors"
+                            >
+                              Save
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  )}
+                </div>
                 <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                   {user?.notelp}
                 </dd>
