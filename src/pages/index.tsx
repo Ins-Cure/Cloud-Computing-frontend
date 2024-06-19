@@ -52,11 +52,13 @@ export default function Home() {
           </div>
           <div className="lg:w-1/2 flex justify-center">
             <Image
-              src="/hero.png"
+              src="https://drive.google.com/uc?export=view&id=1moAb-VunP8zl-M6NgtUPTyvxu7xDqeHR"
               width={750}
               height={750}
               alt="inscure logo"
               className="rounded-full size-5/6 lg:size-max lg:translate-x-10"
+              priority={true}
+              loading="eager"
             />
           </div>
         </div>
@@ -68,11 +70,13 @@ export default function Home() {
         <div className="flex flex-col gap-3 lg:gap-10 h-full justify-center items-center lg:px-40 lg:flex-row">
           <div className="lg:w-1/2 flex justify-center">
             <Image
-              src="/photographer.png"
+              src="https://drive.google.com/uc?export=view&id=1GeGDvep42mARW1DoupcF389YaProvxkg"
               width={512}
               height={512}
               alt="inscure logo"
               className="rounded-full size-5/6 lg:size-max lg:-translate-x-10"
+              priority={true}
+              loading="eager"
             />
           </div>
           <div
