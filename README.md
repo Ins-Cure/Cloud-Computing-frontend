@@ -1,40 +1,105 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<div align="center">
+<h1> Inscure Website </h1>
 
-## Getting Started
+</div>
 
-First, run the development server:
+# How To Start ?
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Setting Up GCP
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. **Start a new project:**
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+   - Visit the [GCP Console](https://console.cloud.google.com/).
+   - Click the project drop-down menu and choose "New Project".
+   - Enter a name for your project and click "Create".
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+2. **Create an App Engine Applications:**
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+   - Open the Navigation Menu and type "App Engine".
+   - On the App Engine page, click "Create Application".
+   - Select a region for your app.
+   - Choose the language and environment for your app.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Setting Up Firebase
 
-## Learn More
+1. **Start a new Project**
 
-To learn more about Next.js, take a look at the following resources:
+   - Visit the [Firebase Console](https://firebase.google.com/).
+   - Click on "Create Project".
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. **Create a new firestore database**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+   - Go to the "Cloud Firestore" tab.
+   - Enable the database.
 
-## Deploy on Vercel
+3. **Add a new Web App Porject**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   - Click on the settings icon and then select "Project Settings".
+   - Click the "Add App" button and choose the web platform.
+   - Register your app.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+4. **Save the firebase config Object**
+   - Go to the app page that you registered.
+   - Copy all the values inside the **firebaseConfig** object.
+
+## **Clone The Project to your local Repositories**
+
+1. **Open the Cloud Shell:**
+   - Click the Cloud Shell icon in the top-right corner of the page.
+   - Run the following code in your terminal:
+   ```bash
+   sudo apt-get update
+   ```
+   ```bash
+   sudo apt install git
+   ```
+2. **Clone the the project:**
+   - In the Cloud Shell terminal, clone the project using the following command:
+   ```
+   git clone https://github.com/Ahdaaa/inscure-fe
+   ```
+
+## Deploy The Next.js App to App Engine
+
+1.  **Create a .env.local file:**
+
+- Navigate to your app directory.
+- Create a file called `.env.local`
+- Populate the file with the following code:
+
+  ```bash
+  NEXT_PUBLIC_FIREBASE_APIKEY="[firebaseconfig value that you have copied earlier]"
+  NEXT_PUBLIC_AUTHDOMAIN="[firebaseconfig value that you have copied earlier]"
+  NEXT_PUBLIC_FBASE_AUTH_DOMAIN="[firebaseconfig value that you have copied earlier]"
+  NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET="[firebaseconfig value that you have copied earlier]"
+  NEXT_PUBLIC_FBASE_MESSAGING_SENDER_ID="[firebaseconfig value that you have copied earlier]"
+  NEXT_PUBLIC_FBASE_APP_ID="[firebaseconfig value that you have copied earlier]"
+  NEXT_PUBLIC_FBASE_MEASUREMENT_ID="[firebaseconfig value that you have copied earlier]"
+  NEXT_PUBLIC_BASEAPI="[Your Backend API endpoints]"
+  ```
+
+2.  **Create an app.yaml file:**
+
+- Create a file called `app.yaml`
+- Populate the file with the following code:
+
+  ```yaml
+  runtime: nodejs22
+  service: default
+
+  handlers:
+  - url: /.*
+      secure: never
+      script: auto
+
+  env_variables:
+  NODE_ENV: "production"
+  ```
+
+3. **Deploy your app to App engine**
+
+   - To deploy your app to Google App Engine, run the following command (ensure you are inside the project directory):
+
+   ```
+   gcloud app deploy
+   ```
