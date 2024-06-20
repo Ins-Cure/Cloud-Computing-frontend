@@ -29,7 +29,6 @@ const Navbar = () => {
 
   const navLinks = [
     { label: "home", href: "/" },
-    { label: "our teams", href: "/" },
     { label: "diseases", href: "/diseases" },
     { label: "prediction", href: "/prediciton" },
     { label: "consultation", href: "/consultation" },
