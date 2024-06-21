@@ -2,6 +2,8 @@
 <h1> Inscure Website </h1>
 
 </div>
+<img src="https://github.com/Ins-Cure/Cloud-Computing-frontend/assets/115334112/435d7906-fe11-4f85-adb0-8546e9e323a3" alt="md-1" width="600" style="border-radius:15px; margin-bottom:10px"/>
+
 
 # How To Start ?
 
